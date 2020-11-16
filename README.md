@@ -1,4 +1,6 @@
-<h1>README<h1>
-*tässä on tekstiä*
-ja **tässä** on lisää 
+
+# README
+_tässä on tekstiä_
+
+_ja **tässä** on lisää_ 
 
