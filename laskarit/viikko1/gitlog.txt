@@ -1,0 +1,160 @@
+commit 41bcb9c1ea8018c81404601dd34c874493e256aa
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:26:05 2020 +0200
+
+    file22
+
+ tiedostoja/file22 | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 6d72a50a3d898ffa49229b28efacd5e9f3e0f3b1
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:25:46 2020 +0200
+
+    poistettu file1 ja file2->file22
+
+ tiedostoja/file1 | 1 -
+ tiedostoja/file2 | 0
+ 2 files changed, 1 deletion(-)
+
+commit 754ea0d9fc8ffa9339bb66335b16771bf74c3779
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:22:41 2020 +0200
+
+    file2
+
+ tiedostoja/file1 | 1 +
+ tiedostoja/file2 | 0
+ 2 files changed, 1 insertion(+)
+
+commit 6181a598bcbcd3ffe0d9eb67acb81f3c304fe00e
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:21:55 2020 +0200
+
+    uusi yritys
+
+ tiedostoja/file1 | 1 -
+ tiedostoja/file2 | 0
+ 2 files changed, 1 deletion(-)
+
+commit 681f2ff49ffccc162b10a4ed2cc059f8903d0113
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:20:47 2020 +0200
+
+    file2
+
+ tiedostoja/file1 | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit a1936e605475d37af305fd6182e5b37166e37a3e
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:18:32 2020 +0200
+
+    file1, file2, file3 luominen
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 459b8cecd02273f7e81707878dee1d11a9a3a329
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:12:17 2020 +0200
+
+    git add -p harjoitus
+
+ eka.txt    | 4 ++--
+ kolmas.txt | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 5f139c8222318e2566b9c97ac6566fa76bc67089
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:10:05 2020 +0200
+
+    tiedosto.txt muutettu eka.txt:ksi
+
+ tiedosto.txt | 7 -------
+ 1 file changed, 7 deletions(-)
+
+commit 03016a38052120220b0d79079b9e55ff64073228
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:09:42 2020 +0200
+
+    tiedosto.txt muutettu eka.txt:ksi
+
+ eka.txt | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit 8949a3357cfa5cec4d4d491b6d913305361e62d0
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:08:40 2020 +0200
+
+    toinen.txt poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 5d5d6aa1415774e01995ecbb844a6c8e3342c651
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:06:04 2020 +0200
+
+    tiedosto.txt uudet tekstit
+
+ tiedosto.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit fb833667624887ff90387a6603b464f1f333667f
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:05:16 2020 +0200
+
+    tiedosto.txt paljon tekstiä
+
+ tiedosto.txt | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit d0f485786d68ccd9eaae80646b25a505d76da94a
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 16:00:04 2020 +0200
+
+    stuff kansio ja testi.txt
+
+ stuff/testi.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 34780943176408c0b4ce325ce27874a77cff7000
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 15:59:08 2020 +0200
+
+    muutokset toinen.txt ja kolmas.txt tiedostoihin
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 7ff5f6416b949e7b93693c7c15356740c9363b6f
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 15:58:03 2020 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit fcd459a9d0fcd27efbe362519b2d3c615e3e00f6
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 15:55:21 2020 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit d3dad42e6d71e0b8100e9a3e0ed5935dd5dd7fb2
+Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
+Date:   Mon Nov 16 15:52:43 2020 +0200
+
+    tiedosto.tct luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
