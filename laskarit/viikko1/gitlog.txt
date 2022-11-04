@@ -1,3 +1,6 @@
+**Tiedoston editointi tehtävän 17 mukaisesti.**
+
+
 commit 565f53bc2daa8c75153db97ef59d9d9752a2f6d7
 Author: Nicolette Edevbaro <nicolette.edevbaro@hotmail.com>
 Date:   Tue Nov 1 16:19:34 2022 +0200
