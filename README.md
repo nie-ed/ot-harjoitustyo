@@ -12,3 +12,5 @@ Tekstiä, **lihavoituja osioita** ja *kursivoituja osioita*.
 Tekstiä siis voidaan *kursivoida* ja **lihavoida**.
 
 **Tässä vielä uusi muutos, vastauksena tehtävään 16.**
+
+*Ja vielä muutos tehtävän 17 mukaisesti.*
