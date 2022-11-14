@@ -8,6 +8,10 @@
 
 [komentorivi.txt](https://github.com/nie-ed/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
+[vaatimusmaarittely.md](https://github.com/nie-ed/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
+[tuntikirjanpito.md](https://github.com/nie-ed/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+
 Tekstiä, **lihavoituja osioita** ja *kursivoituja osioita*.
 Tekstiä siis voidaan *kursivoida* ja **lihavoida**.
 
