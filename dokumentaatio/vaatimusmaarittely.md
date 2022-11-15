@@ -11,10 +11,14 @@ Sovelluksella on vain yksi käyttäjäryhmä, joka on **normaali käyttäjät**.
 ## Suunnitellut toiminnallisuudet
 
 ### Perusversio
-- Tetris pelin pelaus
-- Pisteiden lasku ja tallennus
+- Tetris pelin pelaus:
+  - Eri muotoisten ja väristen palikoiden liikkuminen ruudulle
+  - Palikoiden sovitus ruudulla olevien palikoiden joukkoon
+  - Rivin katoaminen ja pisteiden kasvaminen, jos rivi on täysi
+  - Pelin loppuminen, jos palikan osa menee yli ruudun ylärajan
+- Pisteiden lasku ja parhaiden pisteiden tallennus
 - High Scores näkymä, jossa näkyy parhaat tulokset
-- Mahdollisuus kirjoittaa käyttäjänimi ja saada se High Scores listalle, jos tulos yltää High Scores listalle. 
+- Mahdollisuus kirjoittaa käyttäjänimi ja saada se High Scores listalle, jos tulos on top 10:ssä. 
 
 ### Jatkokehitysideat
 - Eri vaikeustasoja
