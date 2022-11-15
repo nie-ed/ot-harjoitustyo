@@ -14,7 +14,9 @@ Sovelluksella on vain yksi käyttäjäryhmä, joka on **normaali käyttäjät**.
 - Tetris pelin pelaus
 - Pisteiden lasku ja tallennus
 - High Scores näkymä, jossa näkyy parhaat tulokset
+- Mahdollisuus kirjoittaa käyttäjänimi ja saada se High Scores listalle, jos tulos yltää High Scores listalle. 
 
 ### Jatkokehitysideat
-- Pelille eri vaikeustasoja
+- Eri vaikeustasoja
+- Mahdollisuus luoda oma käyttäjätunnus ja tallentaa omia tuloksia käyttäjätunnukselle.
  
