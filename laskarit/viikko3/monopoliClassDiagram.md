@@ -8,7 +8,7 @@ classDiagram
 	Hotelli "0..1" <-- "1" Normaali katu : contains
 	Normaali katu <-- Pelaaja : owner
 
-	Monopoli { 
+	class Monopoli { 
 		aloitusruutu : Aloitusruutu
 		vankilaruutu : Vankila
 	}
