@@ -20,7 +20,8 @@ sequenceDiagram
 	main ->> laitehallinto: lisaa_lukija(ratikka6)
 	main ->> laitehallinto: lisaa_lukija(bussi244)
 	main ->> lippu_luukku: Kioski()
-	main ->> kallen_kortti ->> lippu_luukku: osta_matkakortti("Kalle")
+	main ->> kallen_kortti: None
+	kallen_kortti ->> lippu_luukku: osta_matkakortti("Kalle")
 	lippu_luukku ->> matkakortti: Matkakortti("Kalle")
 	lippu_luukku -->> kallen_kortti: uusi_kortti
 	main ->> rautatietori: lataa_arvoa(kallen_kortti, 3)
