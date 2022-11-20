@@ -9,7 +9,7 @@ sequenceDiagram
 	Kone -> Tankki: FuelTank()
 	Tankki -->> Kone: 0
 	Kone -> Tankki: fill(40)
-	Kone -> Moottori	
+	Kone -> Moottori
 
 	Main --> Kone: drive()
 ```
