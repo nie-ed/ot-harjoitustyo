@@ -9,7 +9,7 @@ sequenceDiagram
   Tankki-->>Kone: 0
   Kone->>Tankki: fill(40)
   Tankki-->>Kone: 40
-  Kone->>Moottori: None
+  Kone->>Moottori: Engine(Tankki)
   Moottori-->>Kone: Tankki
   Main->>Kone: drive()
   Kone->>Moottori: start()
