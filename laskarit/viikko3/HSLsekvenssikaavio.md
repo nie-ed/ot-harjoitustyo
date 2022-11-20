@@ -6,7 +6,8 @@ sequenceDiagram
 	participant lukijalaite
 	participant matkakortti	
 
-	main->>*laitehallinto: HKLLaitehallinto()
+	create laitehallinto: None
+	main->>laitehallinto: HKLLaitehallinto()
 	main ->> rautatietori: Lataajalaite()
 	main ->>* ratikka6: Lukijalaite()
 	main ->>* bussi244: Lukijalaite()
