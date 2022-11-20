@@ -1,0 +1,13 @@
+  participant Main
+
+  Main->*Kone: Machine()
+  Kone->*Tankki: FuelTank()
+  Tankki-->Kone: fuel_contents(0)
+  Kone->Tankki: fill(40)
+  Tankki-->Kone: fuel_contents(40)
+  Kone->*Moottori: Engine(Tankki)
+  Main->Kone: drive()
+  Kone->Moottori: start()
+  Moottori->Tankki: consume(5)
+  Tankki-->Moottori: fuel_contents(35)
+  Moottori --> Kone: fuel_contents(35)
