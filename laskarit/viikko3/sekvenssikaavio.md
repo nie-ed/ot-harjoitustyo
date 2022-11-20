@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
 	participant Main
 	participant Kone
@@ -11,4 +12,4 @@ sequenceDiagram
 	Kone -> Moottori	
 
 	Main --> Kone: drive()
-
+```
