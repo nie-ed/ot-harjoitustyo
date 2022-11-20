@@ -1,13 +1,13 @@
 ```mermaid
 classDiagram
-	Pelaaja "2..8" --> "1" Pelilauta
+	Pelaaja "2..8" --> "1" Monopoli
 	Noppa "2" --> "1" Monopoli
 	Pelilauta <-- "40" Ruutu : contains
 	Monopoli <-- Pelilauta
 	Kortti "*" -->  Sattuma tai yhteismaa
 	Talo "0...4" <-- "1" Normaali katu : contains
 	Hotelli "0..1" <-- "1" Normaali katu : contains
-	Normaali katu <-- Pelaaja : owner
+	Normaali katu <.. Pelaaja : owner
 	Monopoli "1" <-- "1" Aloitusruutu
 	Monopoli "1" <-- "1" Vankila
 	Ruutu <|-- Aloitusruutu
