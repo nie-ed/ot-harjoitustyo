@@ -1,1 +1,6 @@
 omat_dokumentit
+__pycache__
+htmlcov
+.coverage
+.pytest_cache
+
