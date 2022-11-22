@@ -9,13 +9,13 @@ class GameLoop:
 
     def start(self):
         while True:
-            if self._handle_events() == False:
+            if self._events() == False:
                 break
 
             self._draw_screen()
 
 
-    def _handle_events(self):
+    def _events(self):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
