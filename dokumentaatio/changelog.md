@@ -12,3 +12,9 @@
 - Käyttäjä näkee näytöllä ruudukon.
 - Käyttäjä näkee staattisia palikoita näytöllä.
 - Käyttäjä voi liikuttaa yhden ruudun kokoista palikkaa näytöllä. 
+
+## Viikko 4
+- Luokka CreateShapes selvittää käytössä olevan palikan osien x ja y koordinaatiston positiot.
+- Luokka NewBlockAttributes valitsee satunnaisen palikkamuodon ja asettaa palikan rotaation, x ja y koordinaatit ja värin.
+- Luokkan Level lisätty toiminnallisuus piirtää käytössä oleva palikka ruudulle.
+- Luokkaan Shapes on listattu palikkamuodot, jotka on saatu osoitteesta: https://www.techwithtim.net/tutorials/game-development-with-python/tetris-pygame/tutorial-1/

@@ -9,24 +9,23 @@ class GameLoop:
 
     def start(self):
         while True:
-            if self._events() == False:
+            if self._events() is False:
                 break
 
             self._draw_screen()
 
-
-    def _events(self):
+    def _events(self):  # pylint: disable=inconsistent-return-statements
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    self._level.move_block(dx=-self._cell_size)
-                if event.key == pygame.K_RIGHT:
-                    self._level.move_block(dx=self._cell_size)
-                if event.key == pygame.K_UP:
-                    self._level.move_block(dy=-self._cell_size)
-                if event.key == pygame.K_DOWN:
-                    self._level.move_block(dy=self._cell_size)
-            elif event.type == pygame.QUIT:
+            if event.type == pygame.KEYDOWN:  # pylint: disable=no-member
+                if event.key == pygame.K_LEFT:  # pylint: disable=no-member
+                    self._level.move_block(d_x=-self._cell_size)
+                if event.key == pygame.K_RIGHT:  # pylint: disable=no-member
+                    self._level.move_block(d_x=self._cell_size)
+                if event.key == pygame.K_UP:  # pylint: disable=no-member
+                    self._level.rotate_block(1)
+                if event.key == pygame.K_DOWN:  # pylint: disable=no-member
+                    self._level.move_block(d_y=self._cell_size)
+            elif event.type == pygame.QUIT:  # pylint: disable=no-member
                 return False
 
     def _draw_screen(self):
