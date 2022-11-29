@@ -7,4 +7,6 @@
 | 20.11 | 1,5 | harjoitusprojekin alustava suunnittelu ja opiskelu, Poetry projektin alustus | 
 | 21.11 | 8 | käyttöliittymän alustaminen, sprite olioiden alustaminen |
 | 22.11 | 8 | palikoiden luomisen alustaminen, palikoiden liikkeen alustaminen, testauksen, changelogin ja  invokejen aloitus|
-| yht | 19 | |
+| 28.11 | 2 | eri muotoisten palikoiden luomisen alustaminen
+| 29.11 | 4 | satunnaisen palikan luominen ja piirtäminen ruudulle
+| yht | 25 | |
