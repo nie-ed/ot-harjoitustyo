@@ -1,10 +1,10 @@
 ```mermaid
 classDiagram
 	GameLoop
-	CreateShapes --> NewBlockAttributes
 	NewBlockAttributes *--> Level 
 	Blocks * --> Level
 	Shapes --> NewBlockAttributes
+        CreateShapes --> Level
 
 	class Level {
 		__init__()
