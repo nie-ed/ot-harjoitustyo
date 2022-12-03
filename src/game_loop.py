@@ -20,11 +20,11 @@ class GameLoop:
                 if event.key == pygame.K_LEFT:  # pylint: disable=no-member
                     self._level.move_block(d_x=-self._cell_size)
                 if event.key == pygame.K_RIGHT:  # pylint: disable=no-member
-                    self._level.move_block(d_x=self._cell_size)
+                    self._level.move_block(d_x=+self._cell_size)
                 if event.key == pygame.K_UP:  # pylint: disable=no-member
-                    self._level.rotate_block(1)
+                    self._level.rotate_block()
                 if event.key == pygame.K_DOWN:  # pylint: disable=no-member
-                    self._level.move_block(d_y=self._cell_size)
+                    self._level.move_block(d_y=+self._cell_size)
             elif event.type == pygame.QUIT:  # pylint: disable=no-member
                 return False
 

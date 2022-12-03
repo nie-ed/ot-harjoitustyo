@@ -1,6 +1,5 @@
 import pygame
 from sprites.blocks import Blocks
-from sprites.new_block import NewBlockAttributes
 from sprites.create_shape import CreateShapes
 
 
@@ -11,61 +10,90 @@ class Level:
         self.static_blocks = pygame.sprite.Group()
         self.background = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
-        self.current_block_attributes = None
-        self.block_indexes = None
-        self.current_block_created = pygame.sprite.Group()
+        self.current_block = None
+        self.all_current_blocks = pygame.sprite.Group()
+
+        self.created_blocks = created_blocks
+        self.level_map = level_map
+
+        if self.current_block is None:
+            self.current_block = CreateShapes(5, 5)
+                    
+
+        self._initialize_sprites()
 
 
 
-        if self.current_block_attributes is None:
-            self._create_new_block()
-            self.block_indexes = CreateShapes(self.current_block_attributes)
-
-        self._initialize_sprites(level_map, created_blocks)
-
-
-
-    def _initialize_sprites(self, level_map, created_blocks):
-        height = len(level_map)
-        width = len(level_map[0])
+    def _initialize_sprites(self):
+        height = len(self.level_map)
+        width = len(self.level_map[0])
 
 
         for y in range(height):  # pylint: disable=invalid-name
             for x in range(width):  # pylint: disable=invalid-name
-                self.cell = level_map[y][x]
+                self.cell = self.level_map[y][x]
                 normalized_x = x * self.cell_size
                 normalized_y = y * self.cell_size
 
-                if (x, y) in self.block_indexes.indexes:
-                    block = Blocks(normalized_x, normalized_y, self.current_block_attributes.color)
-                    self.current_block_created.add(block)
+  
+                if (x, y) in self.current_block.indexes:
+                    self.all_current_blocks.add(Blocks(normalized_x, normalized_y, self.current_block.color))
 
-                elif (x, y) in created_blocks:
-                    static_block_color = created_blocks[(x, y)]
+                elif (x, y) in self.created_blocks:
+                    static_block_color = self.created_blocks[(x, y)]
                     block = Blocks(normalized_x, normalized_y,
                                    static_block_color)
                     self.static_blocks.add(block)
-                else:
-                    block = Blocks(normalized_x, normalized_y, (20, 20, 20))
-                    self.background.add(block)
+                    
+                block = Blocks(normalized_x, normalized_y, (20, 20, 20))
+                self.background.add(block)
 
 
 
 
         self.all_sprites.add(
-            self.current_block_created,
+            self.background,
             self.static_blocks,
-            self.background
+            self.all_current_blocks
         )
 
-    def _create_new_block(self):
-        self.current_block_attributes = NewBlockAttributes(5, 5)
 
 
 
     def move_block(self, d_x=0, d_y=0):
-        for i in pygame.sprite.Group.sprites(self.current_block_created):
-            i.rect.move(d_x, d_y)
+        colliding = []
 
-    def rotate_block(self, i):
-        self.current_block_created.rotation += i
+        for block in self.all_current_blocks:
+            colliding.append(self._block_can_move(block, d_x, d_y))
+
+        if False not in colliding:
+            for block in self.all_current_blocks:
+                block.rect.move_ip(d_x, d_y)
+
+
+            
+
+
+
+
+
+
+    def rotate_block(self):
+        self.current_block.rotation += 1
+
+
+    def _block_can_move(self, block, d_x=0, d_y=0):
+        block.rect.move_ip(d_x, d_y)
+        colliding_static_blocks = pygame.sprite.spritecollide(block, self.static_blocks, False)
+        can_move = not colliding_static_blocks
+        width = len(self.level_map[0])*self.cell_size
+
+        if block.rect.left < 0:
+            can_move = False
+        if block.rect.right > width:
+            can_move = False
+        block.rect.move_ip(-d_x, -d_y)
+
+        return can_move
+
+        

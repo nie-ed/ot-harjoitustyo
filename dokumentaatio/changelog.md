@@ -18,3 +18,7 @@
 - Luokka NewBlockAttributes valitsee satunnaisen palikkamuodon ja asettaa palikan rotaation, x ja y koordinaatit ja värin.
 - Luokkan Level lisätty toiminnallisuus piirtää käytössä oleva palikka ruudulle.
 - Luokkaan Shapes on listattu palikkamuodot, jotka on saatu osoitteesta: https://www.techwithtim.net/tutorials/game-development-with-python/tetris-pygame/tutorial-1/
+
+## Viikko 5
+- Metodi move_block liikuttaa palikkaa ja pysäyttää palikan liikkeen jos se osuu seinään tai toiseen staattiseen palikkaan
+- Metodi _block_can_move tarkastaa onko palikka liikkumassa seinään tai toiseen staattiseen palikkaan
