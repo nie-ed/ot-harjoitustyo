@@ -18,7 +18,6 @@ class Level:
 
         if self.current_block is None:
             self.current_block = CreateShapes(5, 5)
-                    
 
         self._initialize_sprites()
 
@@ -35,16 +34,16 @@ class Level:
                 normalized_x = x * self.cell_size
                 normalized_y = y * self.cell_size
 
-  
                 if (x, y) in self.current_block.indexes:
-                    self.all_current_blocks.add(Blocks(normalized_x, normalized_y, self.current_block.color))
+                    self.all_current_blocks.add(
+                        Blocks(normalized_x, normalized_y, self.current_block.color))
 
                 elif (x, y) in self.created_blocks:
                     static_block_color = self.created_blocks[(x, y)]
                     block = Blocks(normalized_x, normalized_y,
                                    static_block_color)
                     self.static_blocks.add(block)
-                    
+
                 block = Blocks(normalized_x, normalized_y, (20, 20, 20))
                 self.background.add(block)
 
@@ -71,13 +70,6 @@ class Level:
                 block.rect.move_ip(d_x, d_y)
 
 
-            
-
-
-
-
-
-
     def rotate_block(self):
         self.current_block.rotation += 1
 
@@ -95,5 +87,3 @@ class Level:
         block.rect.move_ip(-d_x, -d_y)
 
         return can_move
-
-        

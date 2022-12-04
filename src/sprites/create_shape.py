@@ -3,7 +3,7 @@ import pygame
 from .shapes import Shapes
 
 class CreateShapes(pygame.sprite.Sprite):
-    def __init__(self,  X=0, Y=0):
+    def __init__(self, X=0, Y=0):# pylint: disable=invalid-name
         super().__init__()
         self.shape = random.choice(Shapes.shapes_list)
         self.rotation = 0
@@ -19,7 +19,4 @@ class CreateShapes(pygame.sprite.Sprite):
                     self.indexes.append((X + j, Y + i))
 
         for i, index in enumerate(self.indexes):
-            self.indexes[i] = (index[0] - 2, index [1] -4)
-
-
-
+            self.indexes[i] = (index[0] - 2, index[1] -4)

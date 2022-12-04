@@ -13,18 +13,35 @@ created_blocks = {(1, 1): (255, 0, 0), (1, 2): (
 
 class TestLevel(unittest.TestCase):
     def setUp(self):
-        self.testing_level = Level(testing_level, testin_cell)
+        self.testing_level = Level(testing_level, testin_cell, created_blocks)
 
     def test_block_can_move(self):
-        block = self.testing_level.current_block
+        blocks = self.testing_level.all_current_blocks
 
-        self.assertEqual(block.rect.x, 0)
-        self.assertEqual(block.rect.y, 0)
 
-        self.testing_level.move_block(dy=-30)
-        self.assertEqual(block.rect.y, -30)
-        self.assertEqual(block.rect.x, 0)
+        for block in blocks:
+            y = block.rect.y
+            x = block.rect.x
+            break
+        
+        for block in blocks:
 
-        self.testing_level.move_block(dx=-30)
-        self.assertEqual(block.rect.x, -30)
-        self.assertEqual(block.rect.y, -30)
+ 
+            self.testing_level.move_block(d_y =+30)
+            self.assertEqual(block.rect.y, y + testin_cell)
+
+            self.testing_level.move_block(d_x=-30)
+            self.assertEqual(block.rect.x, x-30)
+            self.assertEqual(block.rect.y, y + 30)
+            break
+
+    def test_block_cant_move_past_walls(self):
+        blocks = self.testing_level.all_current_blocks
+        
+        for block in blocks:
+
+            self.assertEqual(self.testing_level._block_can_move(block, d_x=-30), True)
+            self.assertEqual(self.testing_level._block_can_move(block, d_x=-30), True)
+            self.assertEqual(self.testing_level._block_can_move(block, d_x=-300), False)
+            self.assertEqual(self.testing_level._block_can_move(block, d_x=300), False)
+            break
