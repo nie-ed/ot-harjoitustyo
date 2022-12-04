@@ -10,4 +10,5 @@
 | 28.11 | 2 | eri muotoisten palikoiden luomisen alustaminen
 | 29.11 | 4 | satunnaisen palikan luominen ja piirtäminen ruudulle
 | 03.12 | 5 | palikan liikkuminen ja palikan osuminen stattiseen palikkaan tai seinään
-| yht | 25 | |
+| 04.12 | 3 | tuntikirjanpidon, vaatimusmäärittelyn ja arkkitehtuurin päivitys, testaus palikan liikkumiselle ja seiniin osumiselle luotu.
+| yht | 33 | |

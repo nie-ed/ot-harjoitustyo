@@ -12,7 +12,10 @@ Sovelluksella on vain yksi käyttäjäryhmä, joka on **normaali käyttäjät**.
 
 ### Perusversio
 - Tetris pelin pelaus:
-  - Eri muotoisten ja väristen palikoiden liikkuminen ruudulle
+  - Eri muotoisten ja väristen palikoiden luominen - tehty
+  - Palikoiden liikkuminen ruudulle ruudun yläreunasta
+  - Palikat eivät liiku yli ruudun oikean ja vasemman reunan - tehty
+  - Palikat eivät liiku staattisten palikoiden päälle - tehty
   - Palikoiden sovitus ruudulla olevien palikoiden joukkoon
   - Rivin katoaminen ja pisteiden kasvaminen, jos rivi on täysi
   - Pelin loppuminen, jos palikan osa menee yli ruudun ylärajan

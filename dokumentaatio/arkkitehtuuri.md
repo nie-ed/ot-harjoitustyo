@@ -1,3 +1,5 @@
+## Luokkakaavio
+
 ```mermaid
 classDiagram
 	GameLoop
@@ -32,3 +34,7 @@ classDiagram
 	}
 
 ```
+
+## Sekvenssikaavio
+
+![Sekvenssikaavio](sekvenssikaavio.png)
