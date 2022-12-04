@@ -22,3 +22,4 @@
 ## Viikko 5
 - Metodi move_block liikuttaa palikkaa ja pysäyttää palikan liikkeen jos se osuu seinään tai toiseen staattiseen palikkaan
 - Metodi _block_can_move tarkastaa onko palikka liikkumassa seinään tai toiseen staattiseen palikkaan
+- Lisätty testaus palikan liikkeelle ja palikan osumiseen seinään.
