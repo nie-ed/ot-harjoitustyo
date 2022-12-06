@@ -10,6 +10,10 @@
 
 [arkkitehtuuri.md](https://github.com/nie-ed/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+## Releases
+
+[Viikko 5 release](https://github.com/nie-ed/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Asennus
 
 - Projekti on luotu Python 3.8.10:llä ja Pygame-kirjastolla.
@@ -31,3 +35,4 @@ poetry run invoke start
 ```bash
 poetry run invoke test
 ```
+
