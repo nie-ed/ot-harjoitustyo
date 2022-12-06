@@ -1,5 +1,7 @@
 # Tetris
 
+## Dokumentaatio
+
 [vaatimusmaarittely.md](https://github.com/nie-ed/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 [tuntikirjanpito.md](https://github.com/nie-ed/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
@@ -8,3 +10,24 @@
 
 [arkkitehtuuri.md](https://github.com/nie-ed/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+## Asennus
+
+- Projekti on luotu Python 3.8.10:llä ja Pygame-kirjastolla.
+
+- Tarvittavat riippuvuudet tulee asentaa komennolla:
+```bash
+poetry install
+```
+ ## Käynnistys
+ 
+- Sovellus käynnistyy komennolla:
+```bash
+poetry run invoke start
+```
+
+## Testaus
+
+- Testauksen voi suorittaa komennolla:
+```bash
+poetry run invoke test
+```
