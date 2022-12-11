@@ -2,20 +2,30 @@ import pygame
 
 
 class GameLoop:
-    def __init__(self, level, cell_size, display):
+    def __init__(self, level, draw_display, event_handler, cell_size, clock):
         self._level = level
+        self._draw_display = draw_display
+        self._event_handler = event_handler
         self._cell_size = cell_size
-        self._display = display
+        self._clock = clock
+
 
     def start(self):
         while True:
             if self._events() is False:
                 break
 
+            current_time = self._clock.get_ticks()
+
+            self._level.update(current_time)
             self._draw_screen()
 
+            self._clock.tick(60)
+
+
+
     def _events(self):  # pylint: disable=inconsistent-return-statements
-        for event in pygame.event.get():
+        for event in self._event_handler.get():
             if event.type == pygame.KEYDOWN:  # pylint: disable=no-member
                 if event.key == pygame.K_LEFT:  # pylint: disable=no-member
                     self._level.move_block(d_x=-self._cell_size)
@@ -29,6 +39,4 @@ class GameLoop:
                 return False
 
     def _draw_screen(self):
-        self._level.all_sprites.draw(self._display)
-
-        pygame.display.update()
+        self._draw_display.render()

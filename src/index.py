@@ -1,47 +1,25 @@
 import pygame
 from level import Level
 from game_loop import GameLoop
-
-LEVEL_MAP = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-
-CELL_SIZE = 30
+from map import Map
+from draw_display import DrawDisplay
+from event import Event
+from clock import Clock
 
 
 def main():
-    height = len(LEVEL_MAP)
-    width = len(LEVEL_MAP[0])
-    display_height = height * CELL_SIZE
-    display_width = width * CELL_SIZE
-    display = pygame.display.set_mode((display_width, display_height))
-    pygame.display.set_caption("Tetris")
+    level_map = Map()
 
-    created_blocks = {(2, 4): (255, 0, 0), (8, 6): (
-        0, 255, 255), (8, 7): (0, 255, 255)}
+    level_area = level_map.LEVEL_MAP
+    cell_size = level_map.CELL_SIZE
+    display = level_map.display
 
-    level = Level(LEVEL_MAP, CELL_SIZE, created_blocks)
+    clock = Clock()
+    level = Level(level_area, cell_size)
+    events = Event()
+    draw_display = DrawDisplay(display, level)
+    game_loop = GameLoop(level, draw_display, events, cell_size, clock)
 
-    game_loop = GameLoop(level, CELL_SIZE, display)
-
-    display.fill((0, 0, 0))
 
     pygame.init()  # pylint: disable=no-member
     game_loop.start()
