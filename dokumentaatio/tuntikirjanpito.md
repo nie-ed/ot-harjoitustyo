@@ -11,4 +11,5 @@
 | 29.11 | 4 | satunnaisen palikan luominen ja piirtäminen ruudulle
 | 03.12 | 5 | palikan liikkuminen ja palikan osuminen stattiseen palikkaan tai seinään
 | 04.12 | 3 | tuntikirjanpidon, vaatimusmäärittelyn ja arkkitehtuurin päivitys, testaus palikan liikkumiselle ja seiniin osumiselle luotu.
-| yht | 33 | |
+| 11.12 | 5 | päivitetty changelog, lisätty palikan liikkuminen ajan mukaan, pohjustettu palikan rotaatiota
+| yht | 38 | |
