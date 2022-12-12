@@ -8,12 +8,14 @@ class Level:
     def __init__(self, level_map, cell_size):
         self.cell_size = cell_size
         self.cell = None
+        self.x = 5
+        self.y = 5
+        self.rotation = 0
         self.static_blocks = pygame.sprite.Group()
         self.background = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
         self.current_block = None
         self.current_block_shape=None
-        self.current_block_rotation=0
         self.all_current_blocks = pygame.sprite.Group()
         self.current_block_previous_move_time = 0
 
@@ -26,22 +28,8 @@ class Level:
         if self.current_block_shape is None:
             self.current_block_shape = GetShape()
 
-        if self.current_block is None:
-            self.current_block = ShapeIndexes(5, 5, self.current_block_shape.shape, self.current_block_shape.rotation)
 
         self._initialize_sprites()
-
-    def update(self, current_time):
-        if self.should_move(current_time):
-            self.move_block(d_y=+self.cell_size)
-            self.current_block_previous_move_time = current_time
-        self.all_current_blocks.update()
-
-    def should_move(self, current_time):
-        return current_time - self.current_block_previous_move_time >= 800
-
-
-
 
     def _initialize_sprites(self):
         height = len(self.level_map)
@@ -55,11 +43,7 @@ class Level:
                 normalized_y = y * self.cell_size
 
 
-                if (x, y) in self.current_block.indexes:
-                    self.all_current_blocks.add(
-                        Blocks(normalized_x, normalized_y, self.current_block_shape.color))
-
-                elif (x, y) in self.created_blocks:
+                if (x, y) in self.created_blocks:
                     static_block_color = self.created_blocks[(x, y)]
                     block = Blocks(normalized_x, normalized_y,
                                    static_block_color)
@@ -69,15 +53,49 @@ class Level:
                 self.background.add(block)
 
 
-
-
         self.all_sprites.add(
             self.background,
             self.static_blocks,
+        )
+
+        self._initialize_shape()
+
+
+    def _initialize_shape(self):
+        height = len(self.level_map)
+        width = len(self.level_map[0])
+
+        if self.current_block is None:
+            self.current_block = ShapeIndexes(self.x, self.y, self.current_block_shape.shape)
+
+
+
+        for y in range(height):  # pylint: disable=invalid-name
+            for x in range(width):  # pylint: disable=invalid-name
+                self.cell = self.level_map[y][x]
+                normalized_x = x * self.cell_size
+                normalized_y = y * self.cell_size
+
+
+                if (x, y) in self.current_block.indexes:
+                    self.all_current_blocks.add(
+                        Blocks(normalized_x, normalized_y, self.current_block_shape.color))
+
+
+
+        self.all_sprites.add(
             self.all_current_blocks
         )
 
 
+    def update(self, current_time):
+        if self.should_move(current_time):
+            self.move_block(d_y=+self.cell_size)
+            self.current_block_previous_move_time = current_time
+        self.all_current_blocks.update()
+
+    def should_move(self, current_time):
+        return current_time - self.current_block_previous_move_time >= 800
 
 
     def move_block(self, d_x=0, d_y=0):
@@ -89,20 +107,8 @@ class Level:
         if False not in colliding:
             for block in self.all_current_blocks:
                 block.rect.move_ip(d_x, d_y)
-
-
-    def rotate_block(self):
-        self.current_block_rotation =+ 1
-        rotation = self.current_block_rotation
-        g = GetShape()
-        g.change_rotation(rotation)
-        for block in self.all_current_blocks:
-            x = block.rect.x
-            y = block.rect.y
-            break
-        self.current_block = ShapeIndexes(x, y, self.current_block_shape.shape, self.current_block_shape.rotation)
-        self.all_current_blocks.update()
-
+        self.x = d_x
+        self.y = d_y
 
 
 
@@ -120,3 +126,21 @@ class Level:
         block.rect.move_ip(-d_x, -d_y)
 
         return can_move
+
+
+    def rotate_block(self):
+        self.rotation += 1
+ 
+        i = 0
+        n = 0
+        for block in self.all_current_blocks:
+            if n == 0:
+                self.current_block = ShapeIndexes(block.rect.x/30, block.rect.y/30, self.current_block_shape.shape, self.rotation)
+                break
+            n += 1
+
+        for block in self.all_current_blocks:
+            block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
+            block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+4)
+            i += 1
+
