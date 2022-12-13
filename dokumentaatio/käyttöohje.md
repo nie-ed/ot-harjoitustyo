@@ -14,3 +14,9 @@ Sovelluksen voi käynnistää komennolla:
 ```bash
 poetry run invoke start
 ```
+
+## Sovelluksen käyttö
+Tällä hetkellä sovelluksessa toimii rotaatio, palikan liike oikealla, vasemmalle sekä alas ja palikka liikkuu ruudulla alaspäin ajastetusti.
+
+Painamalla nuolinäppäimistä oikealle, vasemmalle tai alas, palikka liikkuu siihen suuntaan. Painamalla nuolinäppäimestä ylöspäin, palikan asento muuttuu.
+
