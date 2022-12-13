@@ -10,7 +10,7 @@
 
 [arkkitehtuuri.md](https://github.com/nie-ed/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
-[käyttöohje](https://github.com/nie-ed/ot-harjoitustyo/blob/master/dokumentaatio/k%C3%A4ytt%C3%B6ohje.md)
+[käyttöohje.md](https://github.com/nie-ed/ot-harjoitustyo/blob/master/dokumentaatio/k%C3%A4ytt%C3%B6ohje.md)
 
 ## Releases
 
