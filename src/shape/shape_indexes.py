@@ -1,5 +1,15 @@
 class ShapeIndexes():
+    """Class for getting the x and y coordinates of chosen piece.
+    """
     def __init__(self, X=0, Y=0, shape=None, rotation=0):# pylint: disable=invalid-name
+        """Constructor of class. Creates the list for x and y coordinates of piece.
+
+        Args:
+            X (int): x coordinate of block. Defaults to 0.
+            Y (int): y coordinates of block. Defaults to 0.
+            shape (Shape): Shape of piece, in a list. Defaults to None.
+            rotation (int): Rotation of piece. Defaults to 0.
+        """
         self.shape= shape
         self.rotation = rotation
 

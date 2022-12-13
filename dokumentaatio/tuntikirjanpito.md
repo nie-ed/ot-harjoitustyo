@@ -12,4 +12,6 @@
 | 03.12 | 5 | palikan liikkuminen ja palikan osuminen stattiseen palikkaan tai seinään
 | 04.12 | 3 | tuntikirjanpidon, vaatimusmäärittelyn ja arkkitehtuurin päivitys, testaus palikan liikkumiselle ja seiniin osumiselle luotu.
 | 11.12 | 5 | päivitetty changelog, lisätty palikan liikkuminen ajan mukaan, pohjustettu palikan rotaatiota
-| yht | 38 | |
+| 12.12 | 3 | pohjustettu palikan rotaatiota lisää
+| 13.12 | 4,5 | dokumentaation päivitys
+| yht | 41 | |

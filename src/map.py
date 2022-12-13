@@ -1,7 +1,11 @@
 import pygame
 
 class Map():
+    """Class to create the screen for the game.
+    """
     def __init__(self):
+        """Creates grid and display wiht the grid mesurements.
+        """
         self.LEVEL_MAP = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

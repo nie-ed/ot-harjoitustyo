@@ -17,6 +17,7 @@ Sovelluksella on vain yksi käyttäjäryhmä, joka on **normaali käyttäjät**.
   - Palikat eivät liiku yli ruudun oikean ja vasemman reunan - tehty
   - Palikat eivät liiku staattisten palikoiden päälle - tehty
   - Palikoiden sovitus ruudulla olevien palikoiden joukkoon
+  - Palikoiden rotaation mahdollisuus.
   - Rivin katoaminen ja pisteiden kasvaminen, jos rivi on täysi
   - Pelin loppuminen, jos palikan osa menee yli ruudun ylärajan
 - Pisteiden lasku ja parhaiden pisteiden tallennus

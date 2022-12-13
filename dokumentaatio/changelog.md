@@ -26,3 +26,5 @@
 
 ## Viikko 6
 - Lisätty aikariippuvainen palikan liikkuminen. Palikka liikkuu ruudulla alaspäin jatkuvasti.
+- Lisätty palikan rotaation alustus. Ei toimi vielä täysin.
+- Uusi palikka ilmestyy ruudun ylä reunaan.

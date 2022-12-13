@@ -5,11 +5,22 @@ from shape.get_shape import GetShape
 
 
 class Level:
+    """Class, that creates sprites and handles block movement.
+
+    Attributes:
+        level_map = screen where the game is on, 2 dimensional grid  
+        cell_size = The size of one cell in the level_map
+    """
     def __init__(self, level_map, cell_size):
+        """Constructor for the class, that initialises sprites and block info.
+
+        Args:
+            level_map = screen where the game is on, 2 dimensional grid  
+            cell_size = The size of one cell in the level_map
+
+        """
         self.cell_size = cell_size
         self.cell = None
-        self.x = 5
-        self.y = 5
         self.rotation = 0
         self.static_blocks = pygame.sprite.Group()
         self.background = pygame.sprite.Group()
@@ -32,6 +43,8 @@ class Level:
         self._initialize_sprites()
 
     def _initialize_sprites(self):
+        """Creates static and background sprites and adds them to correct sprite groups.
+        """
         height = len(self.level_map)
         width = len(self.level_map[0])
 
@@ -62,11 +75,13 @@ class Level:
 
 
     def _initialize_shape(self):
+        """Creates payable tetris piece and adds it to the correct sprite group. 
+        """
         height = len(self.level_map)
         width = len(self.level_map[0])
 
         if self.current_block is None:
-            self.current_block = ShapeIndexes(self.x, self.y, self.current_block_shape.shape)
+            self.current_block = ShapeIndexes(5, 5, self.current_block_shape.shape)
 
 
 
@@ -76,11 +91,18 @@ class Level:
                 normalized_x = x * self.cell_size
                 normalized_y = y * self.cell_size
 
-
-                if (x, y) in self.current_block.indexes:
-                    self.all_current_blocks.add(
-                        Blocks(normalized_x, normalized_y, self.current_block_shape.color))
-
+                if self.current_block_shape.index == 2:
+                    if (x, y) in self.current_block.indexes:
+                        self.all_current_blocks.add(
+                            Blocks(normalized_x, normalized_y-self.cell_size, self.current_block_shape.color))
+                elif self.current_block_shape.index == 3 or self.current_block_shape.index == 1 or self.current_block_shape.index == 0:
+                    if (x, y) in self.current_block.indexes:
+                        self.all_current_blocks.add(
+                            Blocks(normalized_x, normalized_y-self.cell_size*3, self.current_block_shape.color))
+                else:
+                    if (x, y) in self.current_block.indexes:
+                        self.all_current_blocks.add(
+                            Blocks(normalized_x, normalized_y-self.cell_size*2, self.current_block_shape.color))
 
 
         self.all_sprites.add(
@@ -89,16 +111,35 @@ class Level:
 
 
     def update(self, current_time):
+        """Moves currently used piece down according to clock ticks.
+
+        Args:
+            current_time (Clock): Milliseconds since the start of the game.
+        """
         if self.should_move(current_time):
             self.move_block(d_y=+self.cell_size)
             self.current_block_previous_move_time = current_time
         self.all_current_blocks.update()
 
     def should_move(self, current_time):
+        """Checks if a certain amount of time has passed
+
+        Args:
+            current_time (Clock): Milliseconds since the start of the game.
+
+        Returns:
+            Boolean: True, if a certain amount of time or more has passed, False if not.
+        """
         return current_time - self.current_block_previous_move_time >= 800
 
 
     def move_block(self, d_x=0, d_y=0):
+        """Moves current piece, if possible.
+
+        Args:
+            d_x (int): How much piece should move to the x direction. Defaults to 0.
+            d_y (int): How much piece should move to the y direction. Defaults to 0.
+        """
         colliding = []
 
         for block in self.all_current_blocks:
@@ -114,6 +155,16 @@ class Level:
 
 
     def _block_can_move(self, block, d_x=0, d_y=0):
+        """Checks, if block can move in a certain direction, or if it collides.
+
+        Args:
+            block (Block): Block, that is trying to move.
+            d_x (int):  How much piece should move to the x direction. Defaults to 0.
+            d_y (int):  How much piece should move to the y direction. Defaults to 0.
+
+        Returns:
+            Boolean: True, if free space for block to move, False if block collides.
+        """
         block.rect.move_ip(d_x, d_y)
         colliding_static_blocks = pygame.sprite.spritecollide(block, self.static_blocks, False)
         can_move = not colliding_static_blocks
@@ -129,7 +180,11 @@ class Level:
 
 
     def rotate_block(self):
+        """Rotates currently used piece.
+        """
         self.rotation += 1
+        if self.rotation == 4:
+            self.rotation = 0
  
         i = 0
         n = 0
@@ -140,7 +195,31 @@ class Level:
             n += 1
 
         for block in self.all_current_blocks:
-            block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
-            block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+4)
+            if self.current_block_shape.index == 0: #toimii
+                block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
+                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+            elif self.current_block_shape.index == 1:
+                block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
+                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+            elif self.current_block_shape.index == 2:#toimii
+                block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
+                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+4)
+            elif self.current_block_shape.index == 4:#toimii
+                if self.rotation == 3:
+                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+2)
+                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+                else:
+                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
+                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+            elif self.current_block_shape.index == 5:
+                block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
+                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+4)
+            elif self.current_block_shape.index == 6:#toimii
+                if self.rotation == 3:
+                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
+                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+                else:
+                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
+                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
             i += 1
 

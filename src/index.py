@@ -8,6 +8,8 @@ from clock import Clock
 
 
 def main():
+    """Initializes game. Starts game.
+    """
     level_map = Map()
 
     level_area = level_map.LEVEL_MAP

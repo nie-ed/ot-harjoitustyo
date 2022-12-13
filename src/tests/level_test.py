@@ -1,4 +1,5 @@
 import unittest
+import time
 from level import Level
 
 testing_level = [[0, 0, 0, 0, 0, 0, 0],
@@ -7,13 +8,12 @@ testing_level = [[0, 0, 0, 0, 0, 0, 0],
                  [0, 0, 0, 0, 0, 0, 0]]
 
 testin_cell = 30
-created_blocks = {(1, 1): (255, 0, 0), (1, 2): (
-    0, 255, 255), (1, 3): (0, 255, 255)}
+
 
 
 class TestLevel(unittest.TestCase):
     def setUp(self):
-        self.testing_level = Level(testing_level, testin_cell, created_blocks)
+        self.testing_level = Level(testing_level, testin_cell)
 
     def test_block_can_move(self):
         blocks = self.testing_level.all_current_blocks
@@ -45,3 +45,23 @@ class TestLevel(unittest.TestCase):
             self.assertEqual(self.testing_level._block_can_move(block, d_x=-300), False)
             self.assertEqual(self.testing_level._block_can_move(block, d_x=300), False)
             break
+
+    def test_block_moves_by_clock_tick(self):
+        blocks = self.testing_level.all_current_blocks
+
+           
+        for block in blocks:
+            y = block.rect.y
+
+            self.testing_level.update(self.testing_level.current_block_previous_move_time+1000)
+
+            self.assertEqual(block.rect.y, y+30)
+
+    def test_static_block_existence(self):
+        self.testing_level.created_blocks = {(2,4): (255, 0, 0)}
+
+        self.testing_level._initialize_shape()
+
+        for block in self.testing_level.static_blocks:
+            self.assertEqual(block.rect.x, 2*testin_cell)
+            self.assertEqual(block.rect.y, 4*testin_cell)
