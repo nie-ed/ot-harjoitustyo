@@ -14,4 +14,4 @@
 | 11.12 | 5 | päivitetty changelog, lisätty palikan liikkuminen ajan mukaan, pohjustettu palikan rotaatiota
 | 12.12 | 3 | pohjustettu palikan rotaatiota lisää
 | 13.12 | 4,5 | dokumentaation päivitys
-| yht | 41 | |
+| yht | 45,5 | |
