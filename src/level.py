@@ -2,7 +2,7 @@ import pygame
 from sprites.blocks import Blocks
 from shape.shape_indexes import ShapeIndexes
 from shape.get_shape import GetShape
-
+from movement.rotate_block import RotateBlock
 
 class Level:
     """Class, that creates sprites and handles block movement.
@@ -29,15 +29,14 @@ class Level:
         self.current_block_shape=None
         self.all_current_blocks = pygame.sprite.Group()
         self.current_block_previous_move_time = 0
+        self.turn_static = False
 
-        created_blocks = {(2, 4): (255, 0, 0), (8, 6): (
-        0, 255, 255), (8, 7): (0, 255, 255)}
+        created_blocks = {}
 
         self.created_blocks = created_blocks
         self.level_map = level_map
 
-        if self.current_block_shape is None:
-            self.current_block_shape = GetShape()
+
 
 
         self._initialize_sprites()
@@ -55,20 +54,12 @@ class Level:
                 normalized_x = x * self.cell_size
                 normalized_y = y * self.cell_size
 
-
-                if (x, y) in self.created_blocks:
-                    static_block_color = self.created_blocks[(x, y)]
-                    block = Blocks(normalized_x, normalized_y,
-                                   static_block_color)
-                    self.static_blocks.add(block)
-
                 block = Blocks(normalized_x, normalized_y, (20, 20, 20))
                 self.background.add(block)
 
 
         self.all_sprites.add(
             self.background,
-            self.static_blocks,
         )
 
         self._initialize_shape()
@@ -79,6 +70,9 @@ class Level:
         """
         height = len(self.level_map)
         width = len(self.level_map[0])
+
+        if self.current_block_shape is None:
+            self.current_block_shape = GetShape()
 
         if self.current_block is None:
             self.current_block = ShapeIndexes(5, 5, self.current_block_shape.shape)
@@ -119,6 +113,7 @@ class Level:
         if self.should_move(current_time):
             self.move_block(d_y=+self.cell_size)
             self.current_block_previous_move_time = current_time
+        self.clear_row()
         self.all_current_blocks.update()
 
     def should_move(self, current_time):
@@ -148,8 +143,25 @@ class Level:
         if False not in colliding:
             for block in self.all_current_blocks:
                 block.rect.move_ip(d_x, d_y)
-        self.x = d_x
-        self.y = d_y
+
+        if self.turn_static is True:
+            for block in self.all_current_blocks:
+                self.static_blocks.add(block)
+            self.all_current_blocks.empty()
+            self.current_block = None
+            self.current_block_shape = None
+            self.all_sprites.add(self.static_blocks)
+            self.all_sprites.update()
+            self.turn_static = False
+
+            self._initialize_shape()
+
+    def rotate_block():
+
+
+
+
+
 
 
 
@@ -169,57 +181,38 @@ class Level:
         colliding_static_blocks = pygame.sprite.spritecollide(block, self.static_blocks, False)
         can_move = not colliding_static_blocks
         width = len(self.level_map[0])*self.cell_size
+        height = len(self.level_map)*self.cell_size
 
         if block.rect.left < 0:
             can_move = False
         if block.rect.right > width:
             can_move = False
+        if block.rect.bottom > height:
+            can_move = False
+            self.turn_static = True
+        for i in self.static_blocks:
+            if block.rect.topleft == i.rect.topleft and block.rect.topright == i.rect.topright:
+                self.turn_static = True
         block.rect.move_ip(-d_x, -d_y)
 
         return can_move
 
 
-    def rotate_block(self):
-        """Rotates currently used piece.
-        """
-        self.rotation += 1
-        if self.rotation == 4:
-            self.rotation = 0
- 
-        i = 0
-        n = 0
-        for block in self.all_current_blocks:
-            if n == 0:
-                self.current_block = ShapeIndexes(block.rect.x/30, block.rect.y/30, self.current_block_shape.shape, self.rotation)
-                break
-            n += 1
 
-        for block in self.all_current_blocks:
-            if self.current_block_shape.index == 0: #toimii
-                block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
-                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
-            elif self.current_block_shape.index == 1:
-                block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
-                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
-            elif self.current_block_shape.index == 2:#toimii
-                block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
-                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+4)
-            elif self.current_block_shape.index == 4:#toimii
-                if self.rotation == 3:
-                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+2)
-                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
-                else:
-                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
-                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
-            elif self.current_block_shape.index == 5:
-                block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
-                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+4)
-            elif self.current_block_shape.index == 6:#toimii
-                if self.rotation == 3:
-                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
-                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
-                else:
-                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
-                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
-            i += 1
 
+
+    def clear_row(self):
+        inc = 0
+        
+        for i in range(len(self.level_map)-1, -1, -1):
+            row = self.level_map[i]
+            if self.background not in row:
+                inc +=1
+                ind = i
+                for j in range(len(row)):
+                    try:
+                        self.static_blocks.remove[(j+30,i+30)]
+                    except:
+                        continue
+
+       
