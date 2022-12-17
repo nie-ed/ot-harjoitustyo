@@ -14,4 +14,6 @@
 | 11.12 | 5 | päivitetty changelog, lisätty palikan liikkuminen ajan mukaan, pohjustettu palikan rotaatiota
 | 12.12 | 3 | pohjustettu palikan rotaatiota lisää
 | 13.12 | 4,5 | dokumentaation päivitys
-| yht | 45,5 | |
+| 16.12 | 4 | palikoiden osuminen staattiseen palikkaan
+| 17.12 | 4 | täyden rivin tyhjeneminen, ylempien palikoiden liikkuminen yhden alas
+| yht | 53,5 |
