@@ -36,3 +36,5 @@
 - end_screen metodi tuo loppuruudun näkyviin.
 - Tiedostoja jaoteltu kansioihin toiminnon mukaan.
 - Testausta lisätty.
+- Seuraava pala näkyy ruudulla.
+- Pisteenlasku repositorio luotu

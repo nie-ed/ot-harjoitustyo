@@ -34,6 +34,10 @@ class Level:
         self.score = 0
         self.window = Map()
         self.does_end= False
+        self.next_piece=None
+        self.next_piece_shape = None
+        self._next_piece_group = pygame.sprite.Group()
+        self.test_all_current_blocks = pygame.sprite.Group()
 
       
 
@@ -57,7 +61,7 @@ class Level:
                 normalized_x = x * self.cell_size
                 normalized_y = y * self.cell_size
 
-                block = Blocks(normalized_x, normalized_y, (20, 20, 20))
+                block = Blocks(normalized_x, normalized_y, 29, 29, (20, 20, 20))
                 self.background.add(block)
 
 
@@ -65,8 +69,31 @@ class Level:
             self.background
         )
 
-
+        self.create_next_block()
         self._initialize_shape()
+
+    def create_next_block(self):
+
+        self.next_piece_shape = GetShape()
+        self.next_piece = ShapeIndexes(14, 7, self.next_piece_shape.shape)
+        for r, i in enumerate(self.next_piece.indexes): # pylint: disable=invalid-name
+            normalized_x = i[0] * self.cell_size
+            normalized_y = i[1] * self.cell_size
+
+            block = Blocks(normalized_x, normalized_y, 29, 29, self.next_piece_shape.color)
+            self._next_piece_group.add(block)
+            if r==0:
+                back = Blocks(300, 85, 300, 200, (0,0,0))
+
+        self.all_sprites.add(back, self._next_piece_group)
+
+    def get_new_current_block(self):
+        self.current_block_shape = self.next_piece_shape
+        self.next_piece_shape = None
+        self.next_piece = None
+        self._next_piece_group.empty()
+        self.create_next_block()
+
 
 
     def _initialize_shape(self):
@@ -74,7 +101,8 @@ class Level:
         """
 
         if self.current_block_shape is None:
-            self.current_block_shape = GetShape()
+            self.get_new_current_block()
+            
 
         if self.current_block is None:
             self.current_block = ShapeIndexes(5, 5, self.current_block_shape.shape)
@@ -84,16 +112,16 @@ class Level:
             normalized_y = i[1] * self.cell_size
 
             if self.current_block_shape.index == 2:
-                block = Blocks(normalized_x, normalized_y-self.cell_size*3, self.current_block_shape.color)
+                block = Blocks(normalized_x, normalized_y-self.cell_size*3, 29, 29, self.current_block_shape.color)
                 self.all_current_blocks.add(block)
 
             elif self.current_block_shape.index == 3 or self.current_block_shape.index == 1 or self.current_block_shape.index == 0:
-                block = Blocks(normalized_x, normalized_y-self.cell_size*4, self.current_block_shape.color)
+                block = Blocks(normalized_x, normalized_y-self.cell_size*4, 29, 29, self.current_block_shape.color)
                 self.all_current_blocks.add(block)
 
 
             else:
-                block=Blocks(normalized_x, normalized_y-self.cell_size*3, self.current_block_shape.color)
+                block=Blocks(normalized_x, normalized_y-self.cell_size*3, 29, 29, self.current_block_shape.color)
                 self.all_current_blocks.add(block)
 
 
@@ -180,43 +208,122 @@ class Level:
         self.rotation +=1
         if self.rotation == 4:
             self.rotation = 0
+        
  
         i = 0
         n = 0
         for block in self.all_current_blocks:
             if n == 0:
-                self.current_block = ShapeIndexes(block.rect.x/30, block.rect.y/30, self.current_block_shape.shape, self.rotation)
+                self.test_current_block = ShapeIndexes(block.rect.x/30, block.rect.y/30, self.current_block_shape.shape, self.rotation)
                 break
             n += 1
 
         for block in self.all_current_blocks:
+            self.test_all_current_blocks.add(Blocks(block.rect.x, block.rect.y, 29, 29, self.current_block_shape.color))
+
+        for block in self.test_all_current_blocks:
             if self.current_block_shape.index == 0: #toimii
-                block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
-                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+                block.rect.x = self.cell_size * (self.test_current_block.indexes[i][0])
+                block.rect.y = self.cell_size * (self.test_current_block.indexes[i][1]+3)
+
             elif self.current_block_shape.index == 1:
-                block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
-                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+                block.rect.x = self.cell_size * (self.test_current_block.indexes[i][0])
+                block.rect.y = self.cell_size * (self.test_current_block.indexes[i][1]+3)
+
             elif self.current_block_shape.index == 2:#toimii
-                block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
-                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+4)
+                block.rect.x = self.cell_size * (self.test_current_block.indexes[i][0]+1)
+                block.rect.y = self.cell_size * (self.test_current_block.indexes[i][1]+4)
+
             elif self.current_block_shape.index == 4:#toimii
                 if self.rotation == 3:
-                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+2)
-                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+                    block.rect.x = self.cell_size * (self.test_current_block.indexes[i][0]+2)
+                    block.rect.y = self.cell_size * (self.test_current_block.indexes[i][1]+3)
+
                 else:
-                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
-                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+                    block.rect.x = self.cell_size * (self.test_current_block.indexes[i][0])
+                    block.rect.y = self.cell_size * (self.test_current_block.indexes[i][1]+3)
+
             elif self.current_block_shape.index == 5:
-                block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
-                block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+4)
+                block.rect.x = self.cell_size * (self.test_current_block.indexes[i][0])
+                block.rect.y = self.cell_size * (self.test_current_block.indexes[i][1]+4)
+
             elif self.current_block_shape.index == 6:#toimii
                 if self.rotation == 3:
-                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
-                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+                    block.rect.x = self.cell_size * (self.test_current_block.indexes[i][0]+1)
+                    block.rect.y = self.cell_size * (self.test_current_block.indexes[i][1]+3)
+
                 else:
+                    block.rect.x = self.cell_size * (self.test_current_block.indexes[i][0])
+                    block.rect.y = self.cell_size * (self.test_current_block.indexes[i][1]+3)
+
+            i += 1
+        self.test_all_current_blocks.update()
+
+        move = True
+
+        for block in self.test_all_current_blocks:
+            for static in self.static_blocks:
+                if static.rect.y == block.rect.y and static.rect.x == block.rect.x:
+                    move = False
+
+        self.test_all_current_blocks.empty()
+
+
+        if move:
+            i = 0
+            self.current_block = self.test_current_block
+
+            for block in self.all_current_blocks:
+                if self.current_block_shape.index == 0: #toimii
                     block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
                     block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
-            i += 1
+
+                elif self.current_block_shape.index == 1:
+                    if self.rotation%2 == 0:
+                        block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
+                        block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+                    else:
+                        block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
+                        block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+
+                elif self.current_block_shape.index == 2:#toimii
+                    block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
+                    block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+4)
+
+                elif self.current_block_shape.index == 4:#toimii
+                    if self.rotation == 3:
+                        block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+2)
+                        block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+
+                    else:
+                        block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
+                        block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+
+                elif self.current_block_shape.index == 5:
+                    if self.rotation == 1:
+                        block.rect.x = self.cell_size * (self.current_block.indexes[i][0]-1)
+                        block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+                    elif self.rotation == 2 or self.rotation == 4:
+                        block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
+                        block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+                    else:
+                        block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
+                        block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+
+
+                elif self.current_block_shape.index == 6:#toimii
+                    if self.rotation == 3:
+                        block.rect.x = self.cell_size * (self.current_block.indexes[i][0]+1)
+                        block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+2)
+
+                    else:
+                        block.rect.x = self.cell_size * (self.current_block.indexes[i][0])
+                        block.rect.y = self.cell_size * (self.current_block.indexes[i][1]+3)
+
+                i += 1
+
+                      #shapes_list = [S, Z, I, O, J, L, T]
+
 
         
 

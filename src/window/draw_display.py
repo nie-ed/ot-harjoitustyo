@@ -37,22 +37,26 @@ class DrawDisplay:
 
 
         font = pygame.font.Font('freesansbold.ttf', 50)
-        font2 = pygame.font.Font('freesansbold.ttf', 30)
-
-        image = font.render('Your Score:', True, (178,34,34))
-        image2 = font2.render(str(self.score), True, (255,255,255))
-        image3 = font.render('High Scores:', True, (178,34,34))
-
-        self._display.blit(image, (100,50))
-        self._display.blit(image2, (450,55))
-        self._display.blit(image3, (100,150))
+        font2 = pygame.font.Font('freesansbold.ttf', 40)
+        font3 = pygame.font.Font('freesansbold.ttf', 30)
 
 
-        spot = 220
+        over_image = font.render('GAME OVER', True, (255,140,0))
+        image = font2.render('Your Score:', True, 	(238,232,170))
+        image2 = font3.render(str(self.score), True, (255,255,255))
+        image3 = font2.render('High Scores:', True, (238,232,170))
+
+        self._display.blit(over_image, (150,50))
+        self._display.blit(image, (100,150))
+        self._display.blit(image2, (450,155))
+        self._display.blit(image3, (100,220))
+
+
+        spot = 260
 
         for i in all:
-            show_score = font2.render(str(i.score), True, (255,255,255))
-            show_username = font2.render(str(i.username), True, (255,255,255))
+            show_score = font3.render(str(i.score), True, (255,255,255))
+            show_username = font3.render(str(i.username), True, (255,255,255))
             self._display.blit(show_score, (100,spot))
             self._display.blit(show_username, (400,spot))
             spot += 30
