@@ -1,10 +1,10 @@
 import pygame
-from level import Level
-from game_loop import GameLoop
-from map import Map
-from draw_display import DrawDisplay
-from event import Event
-from clock import Clock
+from logic.level import Level
+from logic.game_loop import GameLoop
+from window.map import Map
+from window.draw_display import DrawDisplay
+from logic.event import Event
+from logic.clock import Clock
 
 
 def main():
@@ -25,6 +25,9 @@ def main():
 
     pygame.init()  # pylint: disable=no-member
     game_loop.start()
+
+  
+    
 
 
 if __name__ == "__main__":

@@ -30,10 +30,20 @@ class GameLoop:
 
             current_time = self._clock.get_ticks()
 
-            self._level.update(current_time)
-            self._draw_screen()
+            para = self._level.end()
 
-            self._clock.tick(60)
+            if para[0]:
+                
+                self._draw_screen(True, para[1])
+                self._clock.tick(1)
+
+                
+
+            else:
+                self._level.update(current_time)
+                self._draw_screen(False, para[1])
+
+                self._clock.tick(60)
 
 
 
@@ -56,7 +66,10 @@ class GameLoop:
             elif event.type == pygame.QUIT:  # pylint: disable=no-member
                 return False
 
-    def _draw_screen(self):
+    def _draw_screen(self, end, score):
         """Calls method to draw sprites on display.
         """
-        self._draw_display.render()
+        if end:
+            self._draw_display.end_screen(score)
+        else:
+            self._draw_display.render()

@@ -1,6 +1,5 @@
 import unittest
-import time
-from level import Level
+from logic.level import Level
 
 testing_level = [[0, 0, 0, 0, 0, 0, 0],
                  [0, 0, 0, 0, 0, 0, 0],
@@ -46,16 +45,36 @@ class TestLevel(unittest.TestCase):
             self.assertEqual(self.testing_level._block_can_move(block, d_x=300), False)
             break
 
-    def test_block_moves_by_clock_tick(self):
-        blocks = self.testing_level.all_current_blocks
 
+    def test_block_moves_if_time_passed(self):
+        blocks = self.testing_level.all_current_blocks
+        self.testing_level.current_block_previous_move_time = 100
            
         for block in blocks:
             y = block.rect.y
+            break
 
-            self.testing_level.update(self.testing_level.current_block_previous_move_time+1000)
+        for block in blocks:
+            self.testing_level.update(1000)
 
             self.assertEqual(block.rect.y, y+30)
+            break
+
+    def test_block_does_not_move_if_time_not_passed(self):
+        blocks = self.testing_level.all_current_blocks
+        self.testing_level.current_block_previous_move_time = 900
+           
+        for block in blocks:
+            y = block.rect.y
+            break
+
+        for block in blocks:
+            self.testing_level.update(1000)
+
+            self.assertEqual(block.rect.y, y)
+            break
+
+
 
     def test_static_block_existence(self):
         self.testing_level.created_blocks = {(2,4): (255, 0, 0)}

@@ -28,3 +28,11 @@
 - Lisätty aikariippuvainen palikan liikkuminen. Palikka liikkuu ruudulla alaspäin jatkuvasti.
 - Lisätty palikan rotaation alustus. Ei toimi vielä täysin.
 - Uusi palikka ilmestyy ruudun ylä reunaan.
+
+## Viikko 7
+- clear_row metodi tyhjentää rivin palikkapaloista ja ylempänä olevat palikat liikkuvat yhden alaspäin, jos rivi on täynnä.
+- clear_row metodi lisää 10 pistettä, jos rivi tyhjennetää.
+- window_text metodi näyttää ruudulla pistemäärän pelin edetessä
+- end_screen metodi tuo loppuruudun näkyviin.
+- Tiedostoja jaoteltu kansioihin toiminnon mukaan.
+- Testausta lisätty.

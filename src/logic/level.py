@@ -2,7 +2,7 @@ import pygame
 from sprites.blocks import Blocks
 from shape.shape_indexes import ShapeIndexes
 from shape.get_shape import GetShape
-from map import Map
+from window.map import Map
 
 class Level:
     """Class, that creates sprites and handles block movement.
@@ -31,6 +31,10 @@ class Level:
         self.current_block_previous_move_time = 0
         self.turn_static = False
         self.end_screen = None
+        self.score = 0
+        self.window = Map()
+        self.does_end= False
+
       
 
         self.created_blocks = []
@@ -98,9 +102,7 @@ class Level:
         is_ok = not collisions
         
         if is_ok is False:
-            self.all_sprites.empty()
-            end = Map()
-            end.end_screen()
+            self.does_end= True            
  
 
         else:        
@@ -108,6 +110,9 @@ class Level:
                 self.all_current_blocks
             )
           
+    def end(self):
+        para = [self.does_end, self.score]
+        return para
 
 
     def update(self, current_time):
@@ -131,7 +136,7 @@ class Level:
         Returns:
             Boolean: True, if a certain amount of time or more has passed, False if not.
         """
-        return current_time - self.current_block_previous_move_time >= 800
+        return current_time - self.current_block_previous_move_time >= 500
 
 
     def move_block(self, d_x=0, d_y=0):
@@ -268,9 +273,9 @@ class Level:
                 if static.rect.y == i*self.cell_size:
                     many+=1
             
-            if many == len(self.level_map[0]):
-                
-
+            if many == len(self.level_map[0]):                
+                self.score += 10
+                self.window.window_text(self.score)
 
                 for static in self.static_blocks:
                     if static.rect.y == i*self.cell_size:
