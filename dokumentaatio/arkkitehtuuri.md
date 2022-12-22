@@ -7,8 +7,13 @@ classDiagram
 	Blocks * -- Level
 	GetShape *-- Level
 	Map -- Level
+	DrawDisplay -- GameLoop
+	Event *-- GameLoop
+	Clock -- GameLoop
+	Level --> GameLoop
 	
-	Shapes --> NewBlockAttributes
+	
+	
 
 
 ```
