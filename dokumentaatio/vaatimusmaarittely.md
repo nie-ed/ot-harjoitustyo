@@ -12,17 +12,19 @@ Sovelluksella on vain yksi käyttäjäryhmä, joka on **normaali käyttäjät**.
 
 ### Perusversio
 - Tetris pelin pelaus:
-  - Eri muotoisten ja väristen palikoiden luominen - tehty
-  - Palikoiden liikkuminen ruudulle ruudun yläreunasta
-  - Palikat eivät liiku yli ruudun oikean ja vasemman reunan - tehty
-  - Palikat eivät liiku staattisten palikoiden päälle - tehty
-  - Palikoiden sovitus ruudulla olevien palikoiden joukkoon
+  - Sovellus muodostaa eri muotoisia ja väriä palikoita.
+  - Palikat liikkuvat ruudulle ruudun yläreunasta.
+  - Palikat eivät liiku yli ruudun oikean ja vasemman reuna.
+  - Palikat eivät liiku staattisten palikoiden päälle.
+  - Palikoita voi liikuttaa nuolinäppäimillä vasemmalle ja oikealle.
   - Palikoiden rotaation mahdollisuus.
-  - Rivin katoaminen ja pisteiden kasvaminen, jos rivi on täysi
-  - Pelin loppuminen, jos palikan osa menee yli ruudun ylärajan
-- Pisteiden lasku ja parhaiden pisteiden tallennus
-- High Scores näkymä, jossa näkyy parhaat tulokset
-- Mahdollisuus kirjoittaa käyttäjänimi ja saada se High Scores listalle, jos tulos on top 10:ssä. 
+  - Palikat voi sovittaa jo ruudulla näkyvien staattisten palikoiden joukkoon.
+  - Rivi katoaa pelaajan pistemäärä kasvaa 10 pistettä, jos rivi on täysi.
+  - Pelaajan pistenäärä näkyy pelatessa ruudulla.
+  - Seuraavaksi tuleva palikka näkyy pelatessa ruudulla.
+  - Peli loppuu, jos palikan osa menee yli ruudun ylärajan.
+- Pelin loputtua pelaajan pisteet tallennetaan tietokantaan.
+- Pelin loppuruudulla näkyy top 10 tietokantaan tallennettua pistemäärää.
 
 ### Jatkokehitysideat
 - Eri vaikeustasoja
