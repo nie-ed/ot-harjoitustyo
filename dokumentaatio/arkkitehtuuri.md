@@ -20,10 +20,11 @@ classDiagram
 
 Sovelluksen toiminnasta vastaa luokka Level. Level tarjoaa käyttöliittymän toiminnoille metodit kuten:
 
-- initialize_sprites
+- initialize_background
 - initialize_shape
 - move_block
 - rotate_block
+- clear_row
 
 Level luokka pääsee käsiksi palikoiden luomiseen käytettäviin GetShape, ShapeIndexes ja Shapes luokkiin.
 
