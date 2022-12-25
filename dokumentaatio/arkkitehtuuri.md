@@ -53,6 +53,7 @@ Pakkauksen repositories luokka ScoreRepository tallentaa pelin pisteet SQLite-ti
 ## Pelin aloitus
 
 Kun pelin aloittaa, main metodi pohjustaa pelin luomalla Map, Clock, Level, Event, DrawDisplay ja GameLoop oliot. main metodi aloittaa pelin kutsumalla game_loop olion start metodia.
+
 ![PelinAloitusSekvenssikaavio](./pictures/pelin_aloitus_sekvenssikaavio.png)
 
 ## Spritejen piirtäminen ruudulle
@@ -70,10 +71,12 @@ GameLoop-luokasta kutsutaan Level-luokan move_block metodia, joka tarkastaa onko
 ## Rivin tyhjennys
 
 Level-luokassa metodissa clear_row tarkastetaan, onko aika tyhjentää rivi. Jos on tyhjennetän rivi ja kutsutaan Map-luokkan windows_text metodia, joka päivittää ruudulla näkyvän pistemäärän nyt 10 pistettä suuremmaksi. 
+
 ![RivinTyhjennysSekvenssikaavio](./pictures/rivin_tyhjennys_sekvenssikaavio.png)
 
 
 ## Pelin lopetus
 
 Peli loppuu kun GameLoop-luokasta kutsuttaessa Level-luokan end metodia, metodi palauttaa pistemäärälistan lisäksi arvon True. Tällöin GameLoop-luokasta kutsutaan DrawDisplay-luokan end_screen metodia, joka piirtää ruudulle lopetusruudun.  
+
 ![PelinLopetusSekvenssikaavio](./pictures/pelin_lopetus_sekvenssikaavio.png)
