@@ -40,3 +40,4 @@
 - Pisteenlasku repositorio luotu.
 - Loppuruutu näyttää top 10 parhaat pisteet ja omat saadut pisteet.
 - Docstring kommentointia lisätty.
+- Luotu testing_rotation metodi, joka poisti toisteisuutta rotate_block metodista

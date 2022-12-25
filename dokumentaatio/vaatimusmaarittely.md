@@ -26,7 +26,7 @@ Sovelluksella on vain yksi käyttäjäryhmä, joka on **normaali käyttäjät**.
 
 **Loppunäkymässä:**
 - Pelin loputtua pelaajan pisteet tallennetaan tietokantaan.
-- Pelin loppuruudulla näkyy top 10 tietokantaan tallennettua pistemäärää.
+- Pelin loppuruudulla näkyy top 5 tietokantaan tallennettua pistemäärää.
 
 ### Jatkokehitysideat
 - Eri vaikeustasoja

@@ -22,7 +22,7 @@ class DrawDisplay:
 
         pygame.display.update()
 
-    def end_screen(self, score, all_scores):#pylint: disable=too-many-statements
+    def end_screen(self, score, all_scores):  # pylint: disable=too-many-statements
         """Draws end screen.s
 
         Args:
@@ -51,7 +51,7 @@ class DrawDisplay:
 
         for i in all_scores:
             place += 1
-            if place > 11:
+            if place > 5:
                 break
             show_score = font3.render(str(i.score), True, (255, 255, 255))
             self._display.blit(show_score, (100, spot))

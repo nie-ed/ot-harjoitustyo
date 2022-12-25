@@ -64,7 +64,7 @@ GameLoop-luokan start metodi hakee Clock luokasta pelin aloituksesta kuluneen aj
 
 ### Palikan liikkuminen
 
-GameLoop-luokasta kutsutaan Level-luokan move_block metodia, joka tarkastaa onko ok liikkuttaa palikkaan toivottuun suuntaan ja liikuttaa sen sinne, jos on. GameLoop-luokasta kutusutaan Level-luokna rotate_block metodia. rotate_block metodista kutsutaan Shape_Indexes ja Block -luokkia, jotka tuovat palikan uuden rotaation eri x- ja y-koordinaatit ja luovat näiden perusteella uuden palinkan vanhan tilalle. rotate_block metodissa tarkastetaan myös voiko rotaatio tapahtua (ei rotatoi yli reunan etc.) ja jos ei voi, rotaatiota ei tapahdu. 
+GameLoop-luokasta kutsutaan Level-luokan move_block metodia, joka tarkastaa onko ok liikkuttaa palikkaan toivottuun suuntaan ja liikuttaa sen sinne, jos on. GameLoop-luokasta kutusutaan Level-luokna rotate_block metodia. rotate_block metodista kutsutaan Shape_Indexes ja Block -luokkia, jotka tuovat palikan uuden rotaation eri x- ja y-koordinaatit ja luovat näiden perusteella uuden palikan vanhan tilalle.
 
 ![PalikanLiikeSekvenssikaavio](./pictures/palikan_liike_sekvenssikaavio.png)
 
@@ -83,5 +83,4 @@ Peli loppuu kun GameLoop-luokasta kutsuttaessa Level-luokan end metodia, metodi 
 
 ## Sovelluksen rakenteeseen jääneet heikkoudet
 
-Level-luokan metodeja voisi tehdä omiksi luokiksi. 
-Level-luokan rotaatio osuudessa toisteisuutta, voisi selvittää saisiko tämän pois luomalla tästä metodin.
+Level-luokan metodeja voisi tehdä omiksi luokiksi.

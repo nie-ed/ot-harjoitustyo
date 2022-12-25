@@ -8,7 +8,7 @@ from repositories.scores_repository import (
 )
 
 
-class Level: # pylint: disable= too-many-instance-attributes
+class Level:  # pylint: disable= too-many-instance-attributes
     """Class, that creates sprites and handles block movement.
 
     Attributes:
@@ -16,7 +16,7 @@ class Level: # pylint: disable= too-many-instance-attributes
         cell_size = The size of one cell in the level_map
     """
 
-    def __init__(self, level_map, cell_size, score_repository=default_score_repository):#pylint: disable=too-many-statements
+    def __init__(self, level_map, cell_size, score_repository=default_score_repository):  # pylint: disable=too-many-statements
         """Constructor for the class, that initialises sprites and block info.
 
         Args:
@@ -45,6 +45,7 @@ class Level: # pylint: disable= too-many-instance-attributes
         self.test_all_current_blocks = pygame.sprite.Group()
         self._score_repository = score_repository
         self.test_current_block = None
+        self.made = False
 
         self.level_map = level_map
 
@@ -100,7 +101,7 @@ class Level: # pylint: disable= too-many-instance-attributes
         self._next_piece_group.empty()
         self._create_next_block()
 
-    def _initialize_shape(self):#pylint: disable=too-many-statements
+    def _initialize_shape(self):  # pylint: disable=too-many-statements
         """Creates payable tetris piece and adds it to the correct sprite group.
         """
 
@@ -136,8 +137,10 @@ class Level: # pylint: disable= too-many-instance-attributes
         is_ok = not collisions
 
         if is_ok is False:
-            self._score_repository.create(self.score)
-            self.does_end = True
+            if self.made is False:
+                self._score_repository.create(self.score)
+                self.does_end = True
+                self.made = True
 
         else:
             self.all_sprites.add(
@@ -241,7 +244,7 @@ class Level: # pylint: disable= too-many-instance-attributes
 
         return can_move
 
-    def rotate_block(self):#pylint: disable= too-many-branches, too-many-statements
+    def rotate_block(self):  # pylint: disable= too-many-branches, too-many-statements
         """Rotates current piece.
         """
         self.rotation += 1
@@ -250,7 +253,6 @@ class Level: # pylint: disable= too-many-instance-attributes
         width = len(self.level_map[0])*self.cell_size
         height = len(self.level_map)*self.cell_size
 
-        i = 0
         for block in self.all_current_blocks:
             self.test_current_block = ShapeIndexes(
                 block.rect.x/30, block.rect.y/30, self.current_block_shape.shape, self.rotation)
@@ -260,7 +262,39 @@ class Level: # pylint: disable= too-many-instance-attributes
             self.test_all_current_blocks.add(
                 Blocks(block.rect.x, block.rect.y, 29, 29, self.current_block_shape.color))
 
+        self.testing_rotation(self.test_all_current_blocks)
+        self.test_all_current_blocks.update()
+
+        move = True
+
         for block in self.test_all_current_blocks:
+            for static in self.static_blocks:
+                if static.rect.y == block.rect.y and static.rect.x == block.rect.x:
+                    move = False
+
+            if block.rect.left < 0:
+                move = False
+            if block.rect.right > width:
+                move = False
+            if block.rect.bottom > height:
+                move = False
+
+        self.test_all_current_blocks.empty()
+
+        if move:
+            self.testing_rotation(self.all_current_blocks)
+
+        else:
+            self.rotation -= 1
+
+    def testing_rotation(self, all_blocks):#pylint: disable= too-many-branches, too-many-statements
+        """Tests rotation and if it is okay to rotate, makes rotation.
+
+        Args:
+            all_blocks: Blocks to be rotated.
+        """
+        i = 0
+        for block in all_blocks:
             if self.current_block_shape.index == 0:
                 block.rect.x = self.cell_size * \
                     (self.test_current_block.indexes[i][0])
@@ -329,99 +363,6 @@ class Level: # pylint: disable= too-many-instance-attributes
                         (self.test_current_block.indexes[i][1]+3)
 
             i += 1
-        self.test_all_current_blocks.update()
-
-        move = True
-
-        for block in self.test_all_current_blocks:
-            for static in self.static_blocks:
-                if static.rect.y == block.rect.y and static.rect.x == block.rect.x:
-                    move = False
-
-            if block.rect.left < 0:
-                move = False
-            if block.rect.right > width:
-                move = False
-            if block.rect.bottom > height:
-                move = False
-
-        self.test_all_current_blocks.empty()
-
-        if move:#pylint: disable= too-many-nested-blocks
-            i = 0
-            self.current_block = self.test_current_block
-
-            for block in self.all_current_blocks:
-                if self.current_block_shape.index == 0:
-                    block.rect.x = self.cell_size * \
-                        (self.current_block.indexes[i][0])
-                    block.rect.y = self.cell_size * \
-                        (self.current_block.indexes[i][1]+3)
-
-                elif self.current_block_shape.index == 1:
-                    if self.rotation % 2 == 0:
-                        block.rect.x = self.cell_size * \
-                            (self.current_block.indexes[i][0])
-                        block.rect.y = self.cell_size * \
-                            (self.current_block.indexes[i][1]+3)
-                    else:
-                        block.rect.x = self.cell_size * \
-                            (self.current_block.indexes[i][0]+1)
-                        block.rect.y = self.cell_size * \
-                            (self.current_block.indexes[i][1]+3)
-
-                elif self.current_block_shape.index == 2:
-                    block.rect.x = self.cell_size * \
-                        (self.current_block.indexes[i][0]+1)
-                    block.rect.y = self.cell_size * \
-                        (self.current_block.indexes[i][1]+4)
-
-                elif self.current_block_shape.index == 4:
-                    if self.rotation == 3:
-                        block.rect.x = self.cell_size * \
-                            (self.current_block.indexes[i][0]+2)
-                        block.rect.y = self.cell_size * \
-                            (self.current_block.indexes[i][1]+3)
-
-                    else:
-                        block.rect.x = self.cell_size * \
-                            (self.current_block.indexes[i][0])
-                        block.rect.y = self.cell_size * \
-                            (self.current_block.indexes[i][1]+3)
-
-                elif self.current_block_shape.index == 5:
-                    if self.rotation == 1:
-                        block.rect.x = self.cell_size * \
-                            (self.current_block.indexes[i][0]-1)
-                        block.rect.y = self.cell_size * \
-                            (self.current_block.indexes[i][1]+3)
-                    elif self.rotation in (2, 0):
-                        block.rect.x = self.cell_size * \
-                            (self.current_block.indexes[i][0])
-                        block.rect.y = self.cell_size * \
-                            (self.current_block.indexes[i][1]+3)
-                    else:
-                        block.rect.x = self.cell_size * \
-                            (self.current_block.indexes[i][0]+1)
-                        block.rect.y = self.cell_size * \
-                            (self.current_block.indexes[i][1]+3)
-
-                elif self.current_block_shape.index == 6:
-                    if self.rotation == 3:
-                        block.rect.x = self.cell_size * \
-                            (self.current_block.indexes[i][0]+1)
-                        block.rect.y = self.cell_size * \
-                            (self.current_block.indexes[i][1]+2)
-
-                    else:
-                        block.rect.x = self.cell_size * \
-                            (self.current_block.indexes[i][0])
-                        block.rect.y = self.cell_size * \
-                            (self.current_block.indexes[i][1]+3)
-
-                i += 1
-        else:
-            self.rotation -= 1
 
     def clear_row(self):
         """Clears row, if row if full. Also moves all static
@@ -429,7 +370,7 @@ class Level: # pylint: disable= too-many-instance-attributes
         """
         many = 0
 
-        for i in range((len(self.level_map)+1), 0, -1):#pylint: disable= too-many-nested-blocks
+        for i in range((len(self.level_map)+1), 0, -1):  # pylint: disable= too-many-nested-blocks
             for static in self.static_blocks:
                 if static.rect.y == i*self.cell_size:
                     many += 1

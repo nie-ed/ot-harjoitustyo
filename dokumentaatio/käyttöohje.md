@@ -36,4 +36,4 @@ Peli loppuu jos jokin palikka ylittää ruudun yläreunan.
 
 Jos pelin haluaa lopettaa ajoissa, voi painaa pelinäytön yläoikeassa olevaa ruksi näppäintä. Tällöin kuitenkaan pelaajan keräämät pisteet eivät tallennu repositorioon.
 
-Loppuruudulla näkyy pelaajan keräämät pisteet, sekä top 10 pistemäärää, joita saatu aiemmilla pelauskerroilla.
+Loppuruudulla näkyy pelaajan keräämät pisteet, sekä top 5 pistemäärää, joita saatu aiemmilla pelauskerroilla.
