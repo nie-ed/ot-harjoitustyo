@@ -10,7 +10,7 @@ def delete_tables(connection):
     cursor = connection.cursor()
 
     cursor.execute("""
-        drop table if exists score;
+        drop table if exists scores;
     """)
 
     connection.commit()
@@ -25,9 +25,8 @@ def create_tables(connection):
     cursor = connection.cursor()
 
     cursor.execute("""
-        create table score (
-            score integer,
-            username text
+        create table scores (
+            score integer
         );
     """)
 

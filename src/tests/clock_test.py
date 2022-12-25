@@ -1,6 +1,7 @@
 import unittest
 from logic.clock import Clock
 
+
 class TestClock(unittest.TestCase):
     def setUp(self):
         self.test_clock = Clock()
@@ -9,5 +10,4 @@ class TestClock(unittest.TestCase):
         self.test_clock.tick(60)
 
     def test_get_ticks(self):
-       self.assertEqual(self.test_clock.get_ticks(), 0)
-
+        self.assertEqual(self.test_clock.get_ticks(), 0)

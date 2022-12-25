@@ -2,6 +2,7 @@ import unittest
 from repositories.scores_repository import score_repository
 from entities.score import Score
 
+
 class TestScoreRepository(unittest.TestCase):
     def setUp(self):
         score_repository.delete_all()

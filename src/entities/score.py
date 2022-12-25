@@ -3,8 +3,7 @@ import uuid
 
 class Score:
 
-
-    def __init__(self, score, username, score_id=None):
+    def __init__(self, score, score_id=None):
         """Luokan konstruktori, joka luo uuden tehtävän.
         Args:
             content: Merkkijonoarvo, joka kuvaa tehtävän sisältöä.
@@ -20,5 +19,4 @@ class Score:
         """
 
         self.score = score
-        self.username = username
         self.id = score_id or str(uuid.uuid4())

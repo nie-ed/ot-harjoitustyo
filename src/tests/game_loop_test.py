@@ -4,6 +4,7 @@ import pygame
 from logic.level import Level
 from logic.game_loop import GameLoop
 
+
 class StubClock:
     def tick(self, fps):
         pass
@@ -31,26 +32,26 @@ class StubRenderer:
         pass
 
 
-LEVEL_MAP_1 =   [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+LEVEL_MAP_1 = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 CELL_SIZE = 30
 
@@ -62,12 +63,12 @@ class TestGameLoop(unittest.TestCase):
     def test_block_movement_left(self):
         blocks = self.testing_level.all_current_blocks
 
-
         for block in blocks:
             x = block.rect.x
 
             events = [
-                StubEvent(pygame.KEYDOWN, pygame.K_LEFT),StubEvent(pygame.QUIT),
+                StubEvent(pygame.KEYDOWN, pygame.K_LEFT), StubEvent(
+                    pygame.QUIT),
             ]
 
             game_loop = GameLoop(
@@ -87,12 +88,12 @@ class TestGameLoop(unittest.TestCase):
     def test_block_movement_right(self):
         blocks = self.testing_level.all_current_blocks
 
-
         for block in blocks:
             x = block.rect.x
 
             events = [
-                StubEvent(pygame.KEYDOWN, pygame.K_RIGHT),StubEvent(pygame.QUIT),
+                StubEvent(pygame.KEYDOWN, pygame.K_RIGHT), StubEvent(
+                    pygame.QUIT),
             ]
 
             game_loop = GameLoop(
@@ -112,12 +113,12 @@ class TestGameLoop(unittest.TestCase):
     def test_block_movement_down(self):
         blocks = self.testing_level.all_current_blocks
 
-
         for block in blocks:
-            y= block.rect.y
+            y = block.rect.y
 
             events = [
-                StubEvent(pygame.KEYDOWN, pygame.K_DOWN),StubEvent(pygame.QUIT),
+                StubEvent(pygame.KEYDOWN, pygame.K_DOWN), StubEvent(
+                    pygame.QUIT),
             ]
 
             game_loop = GameLoop(
@@ -133,8 +134,3 @@ class TestGameLoop(unittest.TestCase):
             break
 
         self.assertEqual(new_y, y + CELL_SIZE)
-
-
-
-
-        

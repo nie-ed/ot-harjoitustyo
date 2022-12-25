@@ -1,8 +1,10 @@
 import pygame
 
+
 class Clock:
     """Class to handel timed events.
     """
+
     def __init__(self):
         """Constructor of class. Creates a Clock object.
         """

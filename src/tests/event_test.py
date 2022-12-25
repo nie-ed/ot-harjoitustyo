@@ -1,6 +1,7 @@
 import unittest
 from logic.event import Event
 
+
 class TestEvent(unittest.TestCase):
     def setUp(self):
         self.event_test = Event()

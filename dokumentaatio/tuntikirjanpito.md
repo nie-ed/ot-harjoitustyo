@@ -17,5 +17,7 @@
 | 16.12 | 4 | palikoiden osuminen staattiseen palikkaan
 | 17.12 | 4 | täyden rivin tyhjeneminen, ylempien palikoiden liikkuminen yhden alas
 | 18.12 | 1 | repositorion luominen
-| 19.12 | 6 | lisätty testausta, lisätty clear_row metodi ja eri näkymiä ruudulle.
-| yht | 53,5 |
+| 19.12 | 7 | lisätty testausta, lisätty clear_row metodi ja eri näkymiä ruudulle.
+| 20.12 | 5 | lisätty testausta, seuraava palikka näkyy ruudulla, korjattu game over näkymää
+| 22.12 | 1 | dokumentaation päivitystä
+| yht | 67,5 |

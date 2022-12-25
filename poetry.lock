@@ -370,21 +370,6 @@ files = [
 ]
 
 [[package]]
-name = "pygameinputs"
-version = "0.1.2"
-description = "A package to add inputs that work with pygame"
-category = "main"
-optional = false
-python-versions = "<4,>=3.6"
-files = [
-    {file = "pygameinputs-0.1.2-py3-none-any.whl", hash = "sha256:6776aa9e7b415b55d48f0248397948f530efccb3a714cdbd8870d7104fe77a3d"},
-    {file = "pygameinputs-0.1.2.tar.gz", hash = "sha256:398f33dd540c551003ca6b7a1ccedf8fbdb7f17eb73ba85d129e642033fca712"},
-]
-
-[package.dependencies]
-pygame = "*"
-
-[[package]]
 name = "pylint"
 version = "2.15.6"
 description = "python code static checker"
@@ -594,4 +579,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "519cfe837e9fe9d4a93eccef6cbb85b7c2874d341ba1879c491d30eafa644452"
+content-hash = "fca5e142051a694dfb49a2b789a32799269bb44402d7fcf6f256c3240e1882e5"

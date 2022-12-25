@@ -4,6 +4,7 @@ import pygame
 class GameLoop:
     """Class to start gameloop and handle user button presses.
     """
+
     def __init__(self, level, draw_display, event_handler, cell_size, clock):
         """Class constructor, to create new game.
 
@@ -20,9 +21,8 @@ class GameLoop:
         self._cell_size = cell_size
         self._clock = clock
 
-
     def start(self):
-        """Starts an infinite loop for calling event handlet, clock and sprite drawer.
+        """Starts an infinite loop for calling event handlet, clock and sprite and screen drawer.
         """
         while True:
             if self._events() is False:
@@ -33,19 +33,14 @@ class GameLoop:
             para = self._level.end()
 
             if para[0]:
-                
-                self._draw_screen(True, para[1])
-                self._clock.tick(1)
 
-                
+                self._draw_screen(True, para[1], para[2])
 
             else:
                 self._level.update(current_time)
-                self._draw_screen(False, para[1])
+                self._draw_screen(False, para[1], para[2])
 
-                self._clock.tick(60)
-
-
+            self._clock.tick(60)
 
     def _events(self):  # pylint: disable=inconsistent-return-statements
         """Calls methods depending on user button presses.
@@ -66,10 +61,10 @@ class GameLoop:
             elif event.type == pygame.QUIT:  # pylint: disable=no-member
                 return False
 
-    def _draw_screen(self, end, score):
-        """Calls method to draw sprites on display.
+    def _draw_screen(self, end, score, all_scores):
+        """Calls method to draw sprites on display or to draw end screen.
         """
         if end:
-            self._draw_display.end_screen(score)
+            self._draw_display.end_screen(score, all_scores)
         else:
             self._draw_display.render()
