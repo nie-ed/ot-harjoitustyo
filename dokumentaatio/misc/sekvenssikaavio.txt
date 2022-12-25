@@ -1,3 +1,5 @@
+Pelin aloitus:
+        
         participant main
         participant scores_repository
         
@@ -23,9 +25,15 @@
         main ->* game_loop:GameLoop(level, draw_display, events, cell_size_clock)
         game_loop --> main:game_loop 
         main -> game_loop: start()
+        
+  
+       
+  
+
+GameLoop-luokan aloitus ja spritejen piirto ruudulle:       
+        
         game_loop -> clock: get_ticks()
         clock --> game_loop: time
-        
         game_loop -> level: end()
         level -> scores_repository: find_all()
         scores_repository --> level:list scores
@@ -33,16 +41,24 @@
         game_loop -> draw_display:render()
         draw_display --> game_loop: all_sprites.draw
         
+        
+Palikan liike:
+        
         game_loop -> level: move_block
         game_loop  -> level: rotate_block()
         level -> shape_indexes: ShapeIndexes(x, y, current_block_shape.shaep, rotation)
         shape_indexes  --> level: shape, rotation, indexes, objects
         level->blocks: Blocks(x, y, w, h, current_block_shape.color)
         blocks --> level:new rotated piece
+
+
+Rivin tyhjennys:
         
         level -> map: window_text(score)
 
-                
+
+Lopetusruutu näytölle:
+          
         game_loop -> level: end()
         level -> scores_repository: find_all()
         scores_repository --> level:list scores
