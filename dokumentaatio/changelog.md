@@ -37,4 +37,6 @@
 - Tiedostoja jaoteltu kansioihin toiminnon mukaan.
 - Testausta lisätty.
 - Seuraava pala näkyy ruudulla.
-- Pisteenlasku repositorio luotu
+- Pisteenlasku repositorio luotu.
+- Loppuruutu näyttää top 10 parhaat pisteet ja omat saadut pisteet.
+- Docstring kommentointia lisätty.

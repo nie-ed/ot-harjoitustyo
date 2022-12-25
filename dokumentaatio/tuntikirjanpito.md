@@ -20,4 +20,5 @@
 | 19.12 | 7 | lisätty testausta, lisätty clear_row metodi ja eri näkymiä ruudulle.
 | 20.12 | 5 | lisätty testausta, seuraava palikka näkyy ruudulla, korjattu game over näkymää
 | 22.12 | 1 | dokumentaation päivitystä
-| yht | 67,5 |
+| 25.12 | 3 | dokumentaation päivitystä, muutoksia repositorioon, viimeistelyä
+| yht | 70,5 |
