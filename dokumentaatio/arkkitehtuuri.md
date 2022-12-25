@@ -4,7 +4,7 @@
 
 Sovelluksella on kolmitasoinen kerrosarkkitehtuuri. Sovelluksen pakkauskaavio:
 
-![Pakkauskaavio](pakkauskaavio.png)
+![Pakkauskaavio](./pictures/pakkauskaavio.png)
 
 Pakkaus window sisältää käyttöliittymän koodia, logic sovelluslogiikan koodia, shape palikoiden muodostamisen koodia, sprites Sprite -olioiden muodostamisen koodia, repositories tietokannan muodostavaa koodia ja entities tietokannan käyttämän olion koodia.
 
@@ -50,4 +50,4 @@ Pakkauksen repositories luokka ScoreRepository tallentaa pelin pisteet SQLite-ti
 
 ## Sekvenssikaavio
 
-![Sekvenssikaavio](sekvenssikaavio.png)
+![Sekvenssikaavio](./pictures/sekvenssikaavio.png)
