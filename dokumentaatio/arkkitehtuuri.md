@@ -45,7 +45,7 @@ Level luokka pääsee käsiksi palikoiden luomiseen käytettäviin GetShape, Sha
 
 ## Sovelluksen tietokanta
 
-Pakkauksen repositories luokka ScoreRepository tallentaa pelin pisteet SQLite-tietokantaan.
+Pakkauksen repositories luokka ScoreRepository tallentaa pelin pisteet SQLite-tietokantaan. Tietokantaluokka on ScoreRepository.
 
 
 ## Sekvenssikaavio
