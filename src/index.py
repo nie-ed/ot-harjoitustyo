@@ -12,8 +12,8 @@ def main():
     """
     level_map = Map()
 
-    level_area = level_map.LEVEL_MAP
-    cell_size = level_map.CELL_SIZE
+    level_area = level_map.level_map
+    cell_size = level_map.cell_size
     display = level_map.display
 
     clock = Clock()

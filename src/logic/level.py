@@ -8,19 +8,19 @@ from repositories.scores_repository import (
 )
 
 
-class Level:
+class Level: # pylint: disable= too-many-instance-attributes
     """Class, that creates sprites and handles block movement.
 
     Attributes:
-        level_map = screen where the game is on, 2 dimensional grid  
+        level_map = screen where the game is on, 2 dimensional grid
         cell_size = The size of one cell in the level_map
     """
 
-    def __init__(self, level_map, cell_size, score_repository=default_score_repository):
+    def __init__(self, level_map, cell_size, score_repository=default_score_repository):#pylint: disable=too-many-statements
         """Constructor for the class, that initialises sprites and block info.
 
         Args:
-            level_map = screen where the game is on, 2 dimensional grid  
+            level_map = screen where the game is on, 2 dimensional grid
             cell_size = The size of one cell in the level_map
 
         """
@@ -44,6 +44,7 @@ class Level:
         self._next_piece_group = pygame.sprite.Group()
         self.test_all_current_blocks = pygame.sprite.Group()
         self._score_repository = score_repository
+        self.test_current_block = None
 
         self.level_map = level_map
 
@@ -99,8 +100,8 @@ class Level:
         self._next_piece_group.empty()
         self._create_next_block()
 
-    def _initialize_shape(self):
-        """Creates payable tetris piece and adds it to the correct sprite group. 
+    def _initialize_shape(self):#pylint: disable=too-many-statements
+        """Creates payable tetris piece and adds it to the correct sprite group.
         """
 
         if self.current_block_shape is None:
@@ -110,7 +111,7 @@ class Level:
             self.current_block = ShapeIndexes(
                 5, 5, self.current_block_shape.shape)
 
-        for i in self.current_block.indexes:  # pylint: disable=invalid-name
+        for i in self.current_block.indexes:
             normalized_x = i[0] * self.cell_size
             normalized_y = i[1] * self.cell_size
 
@@ -119,7 +120,7 @@ class Level:
                                3, 29, 29, self.current_block_shape.color)
                 self.all_current_blocks.add(block)
 
-            elif self.current_block_shape.index == 3 or self.current_block_shape.index == 1 or self.current_block_shape.index == 0:
+            elif self.current_block_shape.index in (3, 1, 0):
                 block = Blocks(normalized_x, normalized_y-self.cell_size *
                                4, 29, 29, self.current_block_shape.color)
                 self.all_current_blocks.add(block)
@@ -147,10 +148,11 @@ class Level:
         """Method for GameLoop class to check if it is time to end the the game.
 
         Returns:
-            list: Contains True or False to end the game, the score of the payer and all the scores in the repository.
+            list: Contains True or False to end the game, the score of the
+            payer and all the scores in the repository.
         """
-        all = self._score_repository.find_all()
-        para = [self.does_end, self.score, all]
+        all_scores = self._score_repository.find_all()
+        para = [self.does_end, self.score, all_scores]
         return para
 
     def update(self, current_time):
@@ -239,7 +241,7 @@ class Level:
 
         return can_move
 
-    def rotate_block(self):
+    def rotate_block(self):#pylint: disable= too-many-branches, too-many-statements
         """Rotates current piece.
         """
         self.rotation += 1
@@ -302,7 +304,7 @@ class Level:
                         (self.test_current_block.indexes[i][0]-1)
                     block.rect.y = self.cell_size * \
                         (self.test_current_block.indexes[i][1]+3)
-                elif self.rotation == 2 or self.rotation == 0:
+                elif self.rotation in (2, 0):
                     block.rect.x = self.cell_size * \
                         (self.test_current_block.indexes[i][0])
                     block.rect.y = self.cell_size * \
@@ -345,7 +347,7 @@ class Level:
 
         self.test_all_current_blocks.empty()
 
-        if move:
+        if move:#pylint: disable= too-many-nested-blocks
             i = 0
             self.current_block = self.test_current_block
 
@@ -393,7 +395,7 @@ class Level:
                             (self.current_block.indexes[i][0]-1)
                         block.rect.y = self.cell_size * \
                             (self.current_block.indexes[i][1]+3)
-                    elif self.rotation == 2 or self.rotation == 0:
+                    elif self.rotation in (2, 0):
                         block.rect.x = self.cell_size * \
                             (self.current_block.indexes[i][0])
                         block.rect.y = self.cell_size * \
@@ -421,14 +423,13 @@ class Level:
         else:
             self.rotation -= 1
 
-            #shapes_list = [S, Z, I, O, J, L, T]
-
     def clear_row(self):
-        """Clears row, if row if full. Also moves all static pieces on screen down, if row cleared under.
+        """Clears row, if row if full. Also moves all static
+            pieces on screen down, if row cleared under.
         """
         many = 0
 
-        for i in range((len(self.level_map)+1), 0, -1):
+        for i in range((len(self.level_map)+1), 0, -1):#pylint: disable= too-many-nested-blocks
             for static in self.static_blocks:
                 if static.rect.y == i*self.cell_size:
                     many += 1

@@ -22,7 +22,7 @@ class DrawDisplay:
 
         pygame.display.update()
 
-    def end_screen(self, score, all_scores):
+    def end_screen(self, score, all_scores):#pylint: disable=too-many-statements
         """Draws end screen.s
 
         Args:

@@ -8,7 +8,7 @@ class Map():
     def __init__(self):
         """Creates grid and display with the grid mesurements.
         """
-        self.LEVEL_MAP = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        self.level_map = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -29,7 +29,7 @@ class Map():
                           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
-        self.CELL_SIZE = 30
+        self.cell_size = 30
 
         display = pygame.display.set_mode((600, 600))
 

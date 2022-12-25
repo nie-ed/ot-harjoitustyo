@@ -8,8 +8,6 @@ try:
 except FileNotFoundError:
     pass
 
-SCORE_FILENAME = os.getenv("SCORE_FILENAME") or "score.csv"
-SCORES_FILE_PATH = os.path.join(dirname, "..", "data", SCORE_FILENAME)
 
 DATABASE_FILENAME = os.getenv("DATABASE_FILENAME") or "database.sqlite"
 DATABASE_FILE_PATH = os.path.join(dirname, "..", "data", DATABASE_FILENAME)

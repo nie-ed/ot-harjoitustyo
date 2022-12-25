@@ -21,9 +21,17 @@
 - Projekti on luotu Python 3.8.10:llä ja Pygame-kirjastolla.
 
 - Tarvittavat riippuvuudet tulee asentaa komennolla:
+
 ```bash
 poetry install
 ```
+
+- Alustus tulee suorittaa komennolla:
+
+```bash
+poetry run invoke build
+```
+
  ## Käynnistys
  
 - Sovellus käynnistyy komennolla:
@@ -34,7 +42,16 @@ poetry run invoke start
 ## Testaus
 
 - Testauksen voi suorittaa komennolla:
+
 ```bash
 poetry run invoke test
+```
+
+## Pylint
+
+Pylintin tarkastukset voi suorittaa komennolla:
+
+```bash
+poetry run invoke lint
 ```
 

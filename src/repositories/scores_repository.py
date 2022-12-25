@@ -1,4 +1,3 @@
-from pathlib import Path
 from entities.score import Score
 from database_connection import get_database_connection
 
