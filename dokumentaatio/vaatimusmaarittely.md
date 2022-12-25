@@ -11,7 +11,7 @@ Sovelluksella on vain yksi käyttäjäryhmä, joka on **normaali käyttäjät**.
 ## Suunnitellut toiminnallisuudet
 
 ### Perusversio
-- Tetris pelin pelaus:
+**Peliruudulla:**
   - Sovellus muodostaa eri muotoisia ja väriä palikoita.
   - Palikat liikkuvat ruudulle ruudun yläreunasta.
   - Palikat eivät liiku yli ruudun oikean ja vasemman reuna.
@@ -23,6 +23,8 @@ Sovelluksella on vain yksi käyttäjäryhmä, joka on **normaali käyttäjät**.
   - Pelaajan pistenäärä näkyy pelatessa ruudulla.
   - Seuraavaksi tuleva palikka näkyy pelatessa ruudulla.
   - Peli loppuu, jos palikan osa menee yli ruudun ylärajan.
+
+**Loppunäkymässä:**
 - Pelin loputtua pelaajan pisteet tallennetaan tietokantaan.
 - Pelin loppuruudulla näkyy top 10 tietokantaan tallennettua pistemäärää.
 
