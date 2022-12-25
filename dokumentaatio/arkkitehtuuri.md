@@ -70,7 +70,7 @@ GameLoop-luokasta kutsutaan Level-luokan move_block metodia, joka tarkastaa onko
 ## Rivin tyhjennys
 
 Level-luokassa metodissa clear_row tarkastetaan, onko aika tyhjentää rivi. Jos on tyhjennetän rivi ja kutsutaan Map-luokkan windows_text metodia, joka päivittää ruudulla näkyvän pistemäärän nyt 10 pistettä suuremmaksi. 
-![RivinTyhjennysSekvenssikaavio](./pictures/rivin_tyhjennys__sekvenssikaavio.png)
+![RivinTyhjennysSekvenssikaavio](./pictures/rivin_tyhjennys_sekvenssikaavio.png)
 
 
 ## Pelin lopetus
