@@ -50,33 +50,38 @@ Pakkauksen repositories luokka ScoreRepository tallentaa pelin pisteet SQLite-ti
 
 ## Päätoiminnallisuudet
 
-## Pelin aloitus
+### Pelin aloitus
 
 Kun pelin aloittaa, main metodi pohjustaa pelin luomalla Map, Clock, Level, Event, DrawDisplay ja GameLoop oliot. main metodi aloittaa pelin kutsumalla game_loop olion start metodia.
 
 ![PelinAloitusSekvenssikaavio](./pictures/pelin_aloitus_sekvenssikaavio.png)
 
-## Spritejen piirtäminen ruudulle
+### Spritejen piirtäminen ruudulle
 
 GameLoop-luokan start metodi hakee Clock luokasta pelin aloituksesta kuluneen ajan. start metodi hakee Level-luokan end metodilta tiedon, onko aika lopettaa peli, sekä nykyisen ja repositoriossa olevat pistemäärät. Kun ei ole aika lopettaa peliä kutsutaan DrawDisplay-luokan render metodia, joka piirtää spritet ruudulle.
 
 ![GameLoopAloitusSekvenssikaavio](./pictures/gameloop_aloitus_ja_spritet_sekvenssikaavio.png)
 
-## Palikan liikkuminen
+### Palikan liikkuminen
 
 GameLoop-luokasta kutsutaan Level-luokan move_block metodia, joka tarkastaa onko ok liikkuttaa palikkaan toivottuun suuntaan ja liikuttaa sen sinne, jos on. GameLoop-luokasta kutusutaan Level-luokna rotate_block metodia. rotate_block metodista kutsutaan Shape_Indexes ja Block -luokkia, jotka tuovat palikan uuden rotaation eri x- ja y-koordinaatit ja luovat näiden perusteella uuden palinkan vanhan tilalle. rotate_block metodissa tarkastetaan myös voiko rotaatio tapahtua (ei rotatoi yli reunan etc.) ja jos ei voi, rotaatiota ei tapahdu. 
 
 ![PalikanLiikeSekvenssikaavio](./pictures/palikan_liike_sekvenssikaavio.png)
 
-## Rivin tyhjennys
+### Rivin tyhjennys
 
 Level-luokassa metodissa clear_row tarkastetaan, onko aika tyhjentää rivi. Jos on tyhjennetän rivi ja kutsutaan Map-luokkan windows_text metodia, joka päivittää ruudulla näkyvän pistemäärän nyt 10 pistettä suuremmaksi. 
 
 ![RivinTyhjennysSekvenssikaavio](./pictures/rivin_tyhjennys_sekvenssikaavio.png)
 
 
-## Pelin lopetus
+### Pelin lopetus
 
 Peli loppuu kun GameLoop-luokasta kutsuttaessa Level-luokan end metodia, metodi palauttaa pistemäärälistan lisäksi arvon True. Tällöin GameLoop-luokasta kutsutaan DrawDisplay-luokan end_screen metodia, joka piirtää ruudulle lopetusruudun.  
 
 ![PelinLopetusSekvenssikaavio](./pictures/pelin_lopetus_sekvenssikaavio.png)
+
+## Sovelluksen rakenteeseen jääneet heikkoudet
+
+Level-luokan metodeja voisi tehdä omiksi luokiksi. 
+Level-luokan rotaatio osuudessa toisteisuutta, voisi selvittää saisiko tämän pois luomalla tästä metodin.
