@@ -38,6 +38,6 @@
 - Testausta lisätty.
 - Seuraava pala näkyy ruudulla.
 - Pisteenlasku repositorio luotu.
-- Loppuruutu näyttää top 10 parhaat pisteet ja omat saadut pisteet.
+- Loppuruutu näyttää top 5 parhaat pisteet ja omat saadut pisteet.
 - Docstring kommentointia lisätty.
 - Luotu testing_rotation metodi, joka poisti toisteisuutta rotate_block metodista
